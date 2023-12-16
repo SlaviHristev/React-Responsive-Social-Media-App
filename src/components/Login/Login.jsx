@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import styles from './Login.module.css'
 
 export default function Login(){
@@ -9,7 +10,9 @@ export default function Login(){
                     <h1>Welcome</h1>
                     <p>This is an Social Media App project.</p>
                     <span>Don't have an account?</span>
+                    <Link to={'/register'}>
                     <button>Register</button>
+                    </Link>
                 </div>
                 <div className={styles.right}>
                     <h1>Login</h1>
