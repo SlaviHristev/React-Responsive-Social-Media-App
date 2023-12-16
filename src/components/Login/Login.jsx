@@ -1,17 +1,17 @@
-
+import styles from './Login.module.css'
 
 export default function Login(){
     return(
         
-        <div className="login">
-            <div className="card">
-                <div className="left">
+        <div className={styles.login}>
+            <div className={styles.card}>
+                <div className={styles.left}>
                     <h1>Welcome</h1>
                     <p>This is an Social Media App project.</p>
                     <span>Don't have an account?</span>
                     <button>Register</button>
                 </div>
-                <div className="right">
+                <div className={styles.right}>
                     <h1>Login</h1>
                     <form>
                         <input type="text" placeholder="Username" />
