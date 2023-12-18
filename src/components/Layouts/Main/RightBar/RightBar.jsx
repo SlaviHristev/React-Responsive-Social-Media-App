@@ -1,6 +1,9 @@
+import styles from './RightBar.module.css'
 
 export default function RightBar(){
     return(
-        <h1>rightbar</h1>
+        <div className={styles.rightbar}>
+
+        </div>
     )
 }
