@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 
-const isLogged = false;
+const isLogged = true;
 
 export default function ProtectedRoutes({children}){
     if (!isLogged) {
