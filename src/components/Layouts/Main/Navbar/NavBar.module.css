@@ -1,3 +1,21 @@
+:root {
+    --text-color-light: #000;
+    --bg-color-light: white;
+    --logo-color-light: darkblue;
+    --bg-soft-color-light: #f6f3f3;
+    --text-color-soft-light: #555;
+    --border-color-light: lightgray;
+  
+    --text-color-dark: whitesmoke;
+    --bg-color-dark: #222;
+    --logo-color-dark: white;
+    --bg-soft-color-dark: #333;
+    --text-color-soft-dark: lightgray;
+    --border-color-dark: #444;
+  }
+
+
+
 .navbar {
     display: flex;
     align-items: center;
