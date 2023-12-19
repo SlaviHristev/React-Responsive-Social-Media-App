@@ -1,7 +1,14 @@
 import { Link } from 'react-router-dom'
 import styles from './Login.module.css'
+import { useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthContext';
 
 export default function Login(){
+    const {login} = useContext(AuthContext);
+
+    const handleLogin = () =>{
+        login();
+    }
     return(
         
         <div className={styles.login}>
@@ -19,7 +26,7 @@ export default function Login(){
                     <form>
                         <input type="text" placeholder="Username" />
                         <input type="password" placeholder="Password"/>
-                        <button>Login</button>
+                        <button onClick={handleLogin}>Login</button>
                     </form>
                 </div>
             </div>
