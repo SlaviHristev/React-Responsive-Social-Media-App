@@ -1,26 +1,69 @@
-.leftbar {
-    flex: 2;
-    position: sticky;
-    top: 70px;
-    height: calc(100vh - 70px);
-    overflow: scroll;
-    &::-webkit-scrollbar{
-        display: none;
-    }
-    .container {
-        padding: 20px;
-        hr{
-            margin: 10px 0px;
-            border: none;
-            height: 0.5px;
-            background-color: lightgrey;
+/* :root {
+    --text-color-light: #000;
+    --bg-color-light: white;
+    --logo-color-light: darkblue;
+    --bg-soft-color-light: #f6f3f3;
+    --text-color-soft-light: #555;
+    --border-color-light: lightgray;
+
+    --text-color-dark: whitesmoke;
+    --bg-color-dark: #222;
+    --logo-color-dark: white;
+    --bg-soft-color-dark: #333;
+    --text-color-soft-dark: lightgray;
+    --border-color-dark: #444;
+} */
+
+
+.lightMode {
+
+    .leftbar {
+        flex: 2;
+        position: sticky;
+        top: 70px;
+        height: calc(100vh - 70px);
+        overflow: scroll;
+        background-color: white;
+        color:  #000;
+
+        &::-webkit-scrollbar {
+            display: none;
         }
 
-        .menu {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            .user {
+        .container {
+            padding: 20px;
+
+            hr {
+                margin: 10px 0px;
+                border: none;
+                height: 0.5px;
+                background-color: lightgrey;
+            }
+
+            .menu {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                .user {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+
+                    img {
+                        width: 30px;
+                        height: 30px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
+
+                    span {
+                        font-size: 14px;
+                    }
+                }
+            }
+
+            .item {
                 display: flex;
                 align-items: center;
                 gap: 10px;
@@ -29,28 +72,77 @@
                     width: 30px;
                     height: 30px;
                     border-radius: 50%;
-                    object-fit: cover;
                 }
 
                 span {
-                    font-size: 14px;
+                    font-size: 12px;
                 }
             }
         }
+    }
+}
 
-        .item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+.darkMode{
+    .leftbar {
+        flex: 2;
+        position: sticky;
+        top: 70px;
+        height: calc(100vh - 70px);
+        overflow: scroll;
+        background-color: #222;
+        color: whitesmoke;
 
-            img {
-                width: 30px;
-                height: 30px;
-                border-radius: 50%;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        .container {
+            padding: 20px;
+
+            hr {
+                margin: 10px 0px;
+                border: none;
+                height: 0.5px;
+                background-color: #444;
             }
 
-            span {
-                font-size: 12px;
+            .menu {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                .user {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+
+                    img {
+                        width: 30px;
+                        height: 30px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
+
+                    span {
+                        font-size: 14px;
+                    }
+                }
+            }
+
+            .item {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                img {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                }
+
+                span {
+                    font-size: 12px;
+                }
             }
         }
     }

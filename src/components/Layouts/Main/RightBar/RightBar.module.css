@@ -1,82 +1,198 @@
-.rightbar {
-    flex: 3;
-    position: sticky;
-    top: 70px;
-    height: calc(100vh - 70px);
-    overflow: scroll;
+/* :root {
+    --text-color-light: #000;
+    --bg-color-light: white;
+    --logo-color-light: darkblue;
+    --bg-soft-color-light: #f6f3f3;
+    --text-color-soft-light: #555;
+    --border-color-light: lightgray;
 
-    &::-webkit-scrollbar {
-        display: none;
-    }
+    --text-color-dark: whitesmoke;
+    --bg-color-dark: #222;
+    --logo-color-dark: white;
+    --bg-soft-color-dark: #333;
+    --text-color-soft-dark: lightgray;
+    --border-color-dark: #444;
+} */
 
-    .container {
-        padding: 20px;
 
-        .item {
-            -webkit-box-shadow: -11px 14px 19px -13px rgba(0, 0, 0, 0.4);
-            -moz-box-shadow: -11px 14px 19px -13px rgba(0, 0, 0, 0.4);
-            box-shadow: -11px 14px 19px -13px rgba(0, 0, 0, 0.4);
+.lightMode {
+
+    .rightbar {
+        flex: 3;
+        position: sticky;
+        top: 70px;
+        height: calc(100vh - 70px);
+        overflow: scroll;
+        background-color: #f6f3f3;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        .container {
             padding: 20px;
-            margin-bottom: 20px;
 
-            span {
-                color: gray;
-            }
+            .item {
+                -webkit-box-shadow: -11px 14px 19px -13px rgba(0, 0, 0, 0.4);
+                -moz-box-shadow: -11px 14px 19px -13px rgba(0, 0, 0, 0.4);
+                box-shadow: -11px 14px 19px -13px rgba(0, 0, 0, 0.4);
+                padding: 20px;
+                margin-bottom: 20px;
 
-            .user {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                margin: 20px 0px;
-
-                .userInfo {
-                    display: flex;
-                    align-items: center;
-                    gap: 20px;
-                    position: relative;
-
-                    img {
-                        width: 30px;
-                        height: 30px;
-                        border-radius: 50%;
-                        object-fit: cover;
-                    }
-                    .online{
-                        width: 12px;
-                        height: 12px;
-                        border-radius: 50%;
-                        background-color: greenyellow;
-                        position: absolute;
-                        top: 0;
-                        left: 25px;
-                    }
-                    p{
-                        color: gray;
-                    }
-
-                    span {
-                        font-weight: bold;
-                        color: black;
-                    }
+                span {
+                    color: gray;
                 }
 
-                .buttons {
+                .user {
                     display: flex;
                     align-items: center;
-                    gap: 10px;
+                    justify-content: space-between;
+                    margin: 20px 0px;
 
-                    button {
-                        border: none;
-                        padding: 5px;
-                        color: white;
-                        cursor: pointer;
+                    .userInfo {
+                        display: flex;
+                        align-items: center;
+                        gap: 20px;
+                        position: relative;
 
-                        &:first-child {
-                            background-color: blue;
+                        img {
+                            width: 30px;
+                            height: 30px;
+                            border-radius: 50%;
+                            object-fit: cover;
                         }
 
-                        &:last-child {
-                            background-color: red;
+                        .online {
+                            width: 12px;
+                            height: 12px;
+                            border-radius: 50%;
+                            background-color: greenyellow;
+                            position: absolute;
+                            top: 0;
+                            left: 25px;
+                        }
+
+                        p {
+                            color: gray;
+                        }
+
+                        span {
+                            font-weight: bold;
+                            color: black;
+                        }
+                    }
+
+                    .buttons {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+
+                        button {
+                            border: none;
+                            padding: 5px;
+                            color: white;
+                            cursor: pointer;
+
+                            &:first-child {
+                                background-color: blue;
+                            }
+
+                            &:last-child {
+                                background-color: red;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.darkMode{
+    .rightbar {
+        flex: 3;
+        position: sticky;
+        top: 70px;
+        height: calc(100vh - 70px);
+        overflow: scroll;
+        background-color: #333;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        .container {
+            padding: 20px;
+
+            .item {
+                -webkit-box-shadow: -11px 14px 19px -13px rgba(0, 0, 0, 0.4);
+                -moz-box-shadow: -11px 14px 19px -13px rgba(0, 0, 0, 0.4);
+                box-shadow: -11px 14px 19px -13px rgba(0, 0, 0, 0.4);
+                padding: 20px;
+                margin-bottom: 20px;
+                background-color: #222;
+
+                span {
+                    color: gray;
+                }
+
+                .user {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin: 20px 0px;
+
+                    .userInfo {
+                        display: flex;
+                        align-items: center;
+                        gap: 20px;
+                        position: relative;
+
+                        img {
+                            width: 30px;
+                            height: 30px;
+                            border-radius: 50%;
+                            object-fit: cover;
+                        }
+
+                        .online {
+                            width: 12px;
+                            height: 12px;
+                            border-radius: 50%;
+                            background-color: greenyellow;
+                            position: absolute;
+                            top: 0;
+                            left: 25px;
+                        }
+
+                        p {
+                            color: lightgray;
+                        }
+
+                        span {
+                            font-weight: bold;
+                            color: whitesmoke;
+                        }
+                    }
+
+                    .buttons {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+
+                        button {
+                            border: none;
+                            padding: 5px;
+                            color: white;
+                            cursor: pointer;
+
+                            &:first-child {
+                                background-color: blue;
+                            }
+
+                            &:last-child {
+                                background-color: red;
+                            }
                         }
                     }
                 }

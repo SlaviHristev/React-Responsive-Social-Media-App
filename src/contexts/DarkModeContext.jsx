@@ -9,6 +9,7 @@ export const DarkModeContextProvider = ({ children }) => {
 
     const toggle = () => {
         setDarkMode(!darkMode)
+        console.log(darkMode);
     };
 
     useEffect(() => {

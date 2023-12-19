@@ -1,76 +1,146 @@
-:root {
+/* :root {
     --text-color-light: #000;
     --bg-color-light: white;
     --logo-color-light: darkblue;
     --bg-soft-color-light: #f6f3f3;
     --text-color-soft-light: #555;
     --border-color-light: lightgray;
-  
+
     --text-color-dark: whitesmoke;
     --bg-color-dark: #222;
     --logo-color-dark: white;
     --bg-soft-color-dark: #333;
     --text-color-soft-dark: lightgray;
     --border-color-dark: #444;
-  }
+} */
 
+.lightMode {
 
-
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 15px;
-    height: 50px;
-    border-bottom: 1px solid lightgray;
-    position: sticky;
-    top: 0;
-    background-color: white;
-
-    .left {
+    .navbar {
         display: flex;
         align-items: center;
-        gap: 30px;
+        justify-content: space-between;
+        padding: 10px 15px;
+        height: 50px;
+        border-bottom: 1px solid lightgray;
+        position: sticky;
+        top: 0;
+        background-color: white;
+        color:#000 ;
 
-        span {
-            font-weight: bold;
-            font-size: 20px;
-
-        }
-
-        .search {
+        .left {
             display: flex;
             align-items: center;
-            gap: 10px;
-            border: 1px solid lightgray;
-            border-radius: 10px;
-            padding: 5px;
+            gap: 30px;
 
-            input {
-                border: none;
-                width: 500px;
+            span {
+                font-weight: bold;
+                font-size: 20px;
+                color:darkblue
+            }
+
+            .search {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                border: 1px solid lightgray;
+                border-radius: 10px;
+                padding: 5px;
+
+                input {
+                    border: none;
+                    width: 500px;
+                }
+            }
+        }
+
+        .right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+
+            .user {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-weight: 500px;
+
+                img {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+
+                span {}
+            }
+        }
+    }
+}
+
+.darkMode{
+    .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 15px;
+        height: 50px;
+        border-bottom: 1px solid #444;
+        position: sticky;
+        top: 0;
+        background-color: #222;
+        color: whitesmoke;
+
+        .left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+
+            span {
+                font-weight: bold;
+                font-size: 20px;
+                color: white
+            }
+
+            .search {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                border: 1px solid #444;
+                border-radius: 10px;
+                padding: 5px;
+
+                input {
+                    border: none;
+                    width: 500px;
+                    background-color: transparent;
+                    color: whitesmoke;
+                }
+            }
+        }
+
+        .right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+
+            .user {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-weight: 500px;
+
+                img {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+
+                span {}
             }
         }
     }
 
-    .right {
-        display: flex;
-        align-items: center;
-        gap: 20px;
 
-        .user {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 500px;
-            img {
-                width: 30px;
-                height: 30px;
-                border-radius: 50%;
-                object-fit: cover;
-            }
-
-            span {}
-        }
-    }
 }
