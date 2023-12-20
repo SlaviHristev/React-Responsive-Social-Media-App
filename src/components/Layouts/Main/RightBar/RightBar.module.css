@@ -200,3 +200,18 @@
         }
     }
 }
+
+
+@media screen and (max-width: 480px) {
+   
+    .lightMode{
+        .rightbar{
+            display: none;
+        }
+    }
+    .rightbar{
+        .leftbar{
+            display: none;
+        }
+    }
+}

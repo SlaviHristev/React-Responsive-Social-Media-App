@@ -1,26 +1,30 @@
-.stories{
+.stories {
     display: flex;
     gap: 10px;
     height: 250px;
     margin-bottom: 30px;
-    .story{
+
+    .story {
         flex: 1;
         border-radius: 10px;
         overflow: hidden;
         position: relative;
-        img{
+
+        img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        span{
+
+        span {
             position: absolute;
             bottom: 10px;
             left: 10px;
             color: white;
             font-weight: bold;
         }
-        button{
+
+        button {
             position: absolute;
             bottom: 40px;
             left: 10px;
@@ -34,4 +38,34 @@
             font-weight: bold;
         }
     }
+}
+
+@media screen and (max-width: 480px) {
+
+
+
+    .stories {
+        height: 100px;
+        justify-content: space-between;
+        .story{
+            top: 70px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+          
+        }
+        span {
+            display: none;
+        }
+
+        button {
+            top: 20px;
+            bottom: 0px;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+    }
+
 }

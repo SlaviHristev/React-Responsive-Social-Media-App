@@ -27,3 +27,17 @@
         padding: 20px 70px;
     }
 }
+
+@media screen and (max-width: 480px) {
+   
+    .lightMode{
+        .home{
+            padding: 10px;
+        }
+    }
+    .darkMode{
+        .home{
+            padding: 10px;
+        }
+    }
+}

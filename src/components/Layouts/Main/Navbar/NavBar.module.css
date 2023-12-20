@@ -16,8 +16,8 @@
 
 
 .lightMode {
-    
-  
+
+
     .navbar {
         display: flex;
         align-items: center;
@@ -29,7 +29,7 @@
         width: 99%;
         top: 0;
         background-color: white;
-        color:#000 ;
+        color: #000;
         z-index: 999;
 
         .left {
@@ -40,7 +40,7 @@
             span {
                 font-weight: bold;
                 font-size: 20px;
-                color:darkblue
+                color: darkblue
             }
 
             .search {
@@ -51,10 +51,16 @@
                 border-radius: 10px;
                 padding: 5px;
 
-                input {
-                    border: none;
-                    width: 500px;
-                }
+               
+                
+                    input {
+                        border: none;
+                        width: 500px;
+                        
+                    }
+                
+                
+
             }
         }
 
@@ -82,8 +88,8 @@
     }
 }
 
-.darkMode{
-   
+.darkMode {
+
     .navbar {
         display: flex;
         align-items: center;
@@ -150,4 +156,24 @@
     }
 
 
+}
+
+@media screen and (max-width: 480px) {
+        input{
+            display: none;
+        }
+        .lightMode{
+            .navbar{
+                .right{
+                    display: none;
+                }
+            }
+        }
+        .darkMode{
+            .navbar{
+                .right{
+                    display: none;
+                }
+            }
+        }
 }
