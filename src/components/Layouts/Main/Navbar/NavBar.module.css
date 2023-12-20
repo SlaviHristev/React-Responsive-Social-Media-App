@@ -27,6 +27,7 @@
         top: 0;
         background-color: white;
         color:#000 ;
+        z-index: 999;
 
         .left {
             display: flex;
@@ -90,6 +91,7 @@
         top: 0;
         background-color: #222;
         color: whitesmoke;
+        z-index: 999;
 
         .left {
             display: flex;

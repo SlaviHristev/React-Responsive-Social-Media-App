@@ -1,17 +1,54 @@
+import { Link } from 'react-router-dom';
 import styles from './Post.module.css'
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ShareIcon from '@mui/icons-material/Share';
+import TextsmsIcon from '@mui/icons-material/Textsms';
+import { DarkModeContext } from '../../../contexts/DarkModeContext';
+import { useContext } from 'react';
 
 export default function Post({ post }) {
+    const { darkMode } = useContext(DarkModeContext);
+
+    const liked = false;
     return (
+        <div className={darkMode ? styles.lightMode : styles.darkMode}>
+            <div className={styles.post}>
+                <div className={styles.container}>
 
-        <div className={styles.post}>
-            <div className={styles.user}>
+                    <div className={styles.user}>
+                        <div className={styles.userInfo}>
+                            <img src={post.profilePic} alt="" />
+                            <div className={styles.details}>
+                                <Link to={`/profile/${post.userId}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                    <span className={styles.name}>{post.name}</span>
+                                    <span className={styles.date}>2 minutes ago</span>
+                                </Link>
+                            </div>
+                        </div>
+                        <MoreHorizIcon />
 
-            </div>
-            <div className={styles.content}>
-
-            </div>
-            <div className={styles.info}>
-                
+                    </div>
+                    <div className={styles.content}>
+                        <p>{post.description}</p>
+                        <img src={post.img} alt="" />
+                    </div>
+                    <div className={styles.info}>
+                            <div className={styles.item}>
+                                {liked ? <FavoriteIcon/> : <FavoriteBorderIcon/>}
+                                20 likes
+                            </div>
+                            <div className={styles.item}>
+                                <TextsmsIcon/>
+                                2 comments
+                            </div>
+                            <div className={styles.item}>
+                                <ShareIcon/>
+                                3 shares
+                            </div>
+                    </div>
+                </div>
             </div>
         </div>
     )

@@ -1,0 +1,152 @@
+/* :root {
+    --text-color-light: #000;
+    --bg-color-light: white;
+    --logo-color-light: darkblue;
+    --bg-soft-color-light: #f6f3f3;
+    --text-color-soft-light: #555;
+    --border-color-light: lightgray;
+
+    --text-color-dark: whitesmoke;
+    --bg-color-dark: #222;
+    --logo-color-dark: white;
+    --bg-soft-color-dark: #333;
+    --text-color-soft-dark: lightgray;
+    --border-color-dark: #444;
+} */
+
+
+.lightMode {
+
+    .post {
+        -webkit-box-shadow: -11px 14px 19px -13px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: -11px 14px 19px -13px rgba(0, 0, 0, 0.4);
+        box-shadow: -11px 14px 19px -13px rgba(0, 0, 0, 0.4);
+        border-radius: 20px;
+        background-color: white;
+        color:#000 ;
+
+        .container {
+            padding: 20px;
+
+            .user {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .userInfo {
+                    display: flex;
+                    gap: 20px;
+
+                    img {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
+
+                    .details {
+                        display: flex;
+                        flex-direction: column;
+
+                        .name {
+                            font-weight: bold;
+                        }
+
+                        .date {
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+            .content{
+                margin: 20px 0px;
+                img{
+                    width: 100%;
+                    max-height: 500px;
+                    object-fit: cover;
+                    margin-top: 20px;
+                }
+            }
+            .info{
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                .item{
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    cursor: pointer;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}
+
+.darkMode {
+    .post {
+        -webkit-box-shadow: -11px 14px 19px -13px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: -11px 14px 19px -13px rgba(0, 0, 0, 0.4);
+        box-shadow: -11px 14px 19px -13px rgba(0, 0, 0, 0.4);
+        border-radius: 20px;
+        background-color:#222;
+        color: whitesmoke ;
+
+        .container {
+            padding: 20px;
+
+            .user {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .userInfo {
+                    display: flex;
+                    gap: 20px;
+
+                    img {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
+
+                    .details {
+                        display: flex;
+                        flex-direction: column;
+
+                        .name {
+                            font-weight: bold;
+                        }
+
+                        .date {
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+            .content{
+                margin: 20px 0px;
+                img{
+                    width: 100%;
+                    max-height: 500px;
+                    object-fit: cover;
+                    margin-top: 20px;
+                }
+            }
+            .info{
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                .item{
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    cursor: pointer;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+
+}
