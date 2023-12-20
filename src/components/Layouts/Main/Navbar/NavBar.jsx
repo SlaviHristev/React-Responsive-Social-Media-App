@@ -16,35 +16,37 @@ import { AuthContext } from '../../../../contexts/AuthContext';
 
 
 export default function NavBar() {
-    const {darkMode} = useContext(DarkModeContext);
+    const { darkMode } = useContext(DarkModeContext);
     const { toggle } = useContext(DarkModeContext);
-    const {currentUser} = useContext(AuthContext);
+    const { currentUser } = useContext(AuthContext);
     return (
         <div className={darkMode ? styles.lightMode : styles.darkMode}>
-        <div className={styles.navbar}>
-            <div className={styles.left}>
-                <Link to={'/'} style={{ textDecoration: 'none' }}>
-                    <span>Socical Media App</span>
-                </Link>
-                <HomeIcon />
-              { darkMode ? <DarkModeIcon onClick={toggle}/>
-               : <LightModeIcon onClick={toggle}/>}
-                <GridViewIcon />
-                <div className={styles.search}>
-                    <SearchIcon />
-                    <input type="text" placeholder='Search' />
+           
+                <div className={styles.navbar}>
+                    <div className={styles.left}>
+                        <Link to={'/'} style={{ textDecoration: 'none' }}>
+                            <span>Socical Media App</span>
+                        </Link>
+                        <HomeIcon />
+                        {darkMode ? <DarkModeIcon onClick={toggle} />
+                            : <LightModeIcon onClick={toggle} />}
+                        <GridViewIcon />
+                        <div className={styles.search}>
+                            <SearchIcon />
+                            <input type="text" placeholder='Search' />
+                        </div>
+                    </div>
+                    <div className={styles.right}>
+                        <PersonIcon />
+                        <EmailIcon />
+                        <NotificationsIcon />
+                        <div className={styles.user}>
+                            <img src={currentUser.profilePic} alt="" />
+                            <span>{currentUser.name}</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div className={styles.right}>
-                <PersonIcon />
-                <EmailIcon />
-                <NotificationsIcon />
-                <div className={styles.user}>
-                    <img src={currentUser.profilePic} alt="" />
-                    <span>{currentUser.name}</span>
-                </div>
-            </div>
-        </div>
+           
         </div>
     )
 }
