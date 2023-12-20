@@ -6,10 +6,13 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import TextsmsIcon from '@mui/icons-material/Textsms';
 import { DarkModeContext } from '../../../contexts/DarkModeContext';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
+import Comments from '../Comments/Comments';
 
 export default function Post({ post }) {
+    const [commentOpen, setCommentOpen] = useState(false);
     const { darkMode } = useContext(DarkModeContext);
+
 
     const liked = false;
     return (
@@ -35,19 +38,20 @@ export default function Post({ post }) {
                         <img src={post.img} alt="" />
                     </div>
                     <div className={styles.info}>
-                            <div className={styles.item}>
-                                {liked ? <FavoriteIcon/> : <FavoriteBorderIcon/>}
-                                20 likes
-                            </div>
-                            <div className={styles.item}>
-                                <TextsmsIcon/>
-                                2 comments
-                            </div>
-                            <div className={styles.item}>
-                                <ShareIcon/>
-                                3 shares
-                            </div>
+                        <div className={styles.item}>
+                            {liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                            20 likes
+                        </div>
+                        <div className={styles.item} onClick={() => setCommentOpen(!commentOpen)}>
+                            <TextsmsIcon />
+                            2 comments
+                        </div>
+                        <div className={styles.item}>
+                            <ShareIcon />
+                            3 shares
+                        </div>
                     </div>
+                    {commentOpen && <Comments />}
                 </div>
             </div>
         </div>

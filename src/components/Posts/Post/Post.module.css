@@ -47,13 +47,16 @@
                     .details {
                         display: flex;
                         flex-direction: column;
+                        
 
                         .name {
                             font-weight: bold;
+                            
                         }
 
                         .date {
                             font-size: 12px;
+                            margin-left: 5px;
                         }
                     }
                 }
