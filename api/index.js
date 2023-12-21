@@ -1,12 +1,21 @@
-import Express from "express";
+import express from "express";
 import userRoutes from './routes/users.js'
 import postRoutes from './routes/posts.js'
 import likeRoutes from './routes/likes.js'
 import commentRoutes from './routes/comments.js'
 import authRoutes from './routes/auth.js'
+import { db } from "./connectDb.js";
 
 
-const app = Express();
+const app = express();
+app.use(express.json());
+db.connect((err) =>{
+    if(err){
+        console.log(err);
+    }else{
+        console.log('Db connected succesfully!');
+    }
+})
 
 app.use('/api/auth', authRoutes)
 app.use('/api/users', userRoutes);
