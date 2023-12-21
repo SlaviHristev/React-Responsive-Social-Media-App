@@ -92,3 +92,102 @@ justify-content: center;
         }
     }
 }
+
+@media screen and (max-width: 480px) {
+    .login {
+        .card {
+            width: 90%; 
+            max-width: 100%; 
+            
+            .left {
+                align-items: center;
+                width: 70px;
+                h1 {
+                    font-size: 40px; 
+                    font-weight: bold;
+                }
+
+                p {
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+
+                span {
+                    font-size: 16px;
+                    font-weight: bold;
+                }
+
+                button {
+                    width: 100%;  
+                }
+            }
+
+            .right {
+                justify-content: center;
+                h1 {
+                    font-size: 20px; 
+                }
+
+                form {
+                    flex: 2;
+                    align-items: normal;
+                    input {
+                       display: block;
+                        
+                    }
+
+                    button {
+                        width: 100%; 
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+@media screen and (max-width: 1500px) {
+    .login {
+        .card {
+            width: 90%; 
+            max-width: 100%; 
+            .left {
+                h1 {
+                    font-size: 40px; 
+                }
+
+                p {
+                    font-size: 20px; 
+                    font-weight: bold;
+                }
+
+                span {
+                    font-size: 16px; 
+                    font-weight: bold;
+                }
+
+                button {
+                    width: 100%; 
+                    
+                }
+            }
+
+            .right {
+                h1 {
+                    font-size: 30px; 
+                }
+
+                form {
+                    input {
+                        padding: 10px; 
+                    }
+
+                    button {
+                        width: 100%; 
+                    }
+                }
+            }
+        }
+    }
+}

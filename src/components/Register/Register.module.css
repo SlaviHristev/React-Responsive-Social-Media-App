@@ -89,3 +89,72 @@ justify-content: center;
         }
     }
 }
+
+@media screen and (max-width: 1024px) {
+    .register{
+
+        .card {
+            width: 80%;
+            max-width: 100%;
+            flex-direction: row-reverse;
+        }
+    }
+        
+    .left {
+        
+        flex: 1;
+        padding: 20px;
+    }
+
+    .right {
+        flex: 0;
+        padding: 20px;
+    }
+}
+
+
+
+
+
+@media screen and (max-width: 480px) {
+    .register{
+        .card {
+            width: 80%;
+            max-width: 100%;
+            flex-direction: row-reverse;
+            align-self: stretch;
+
+
+            .left{
+                align-items: center;
+                flex: 0;
+                width: 20%;
+                button{
+                    width: 100%;
+                }
+            }
+            .right{
+                
+                flex:1;
+                width: 70%;
+                form{
+                    flex: 2;
+                    align-items: center;
+                    input {
+                        display: block;
+                         
+                     }
+ 
+                     button {
+                         width: 100%; 
+                     }
+                }
+            }
+        }
+    }
+        
+    
+
+   
+}
+
