@@ -177,3 +177,30 @@
             }
         }
 }
+
+
+@media screen and (max-width: 960px) {
+    input{
+        width: 150px;;
+    }
+    .lightMode{
+        .navbar{
+            .right{
+                .user{
+
+                    display: none;
+                }
+            }
+        }
+    }
+    .darkMode{
+        .navbar{
+            .right{
+                .user{
+
+                    display: none;
+                }
+            }
+        }
+    }
+}

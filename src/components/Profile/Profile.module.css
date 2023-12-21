@@ -65,9 +65,9 @@
                     flex: 1;
                     display: flex;
                     gap: 10px;
-                    a{
-                       color: #555
-                       ; 
+
+                    a {
+                        color: #555;
                     }
                 }
 
@@ -99,7 +99,8 @@
                             }
                         }
                     }
-                    button{
+
+                    button {
                         border: none;
                         background-color: rgb(33, 33, 160);
                         color: white;
@@ -152,6 +153,7 @@
 
         .profileContainer {
             padding: 20px 70px;
+
             .userInfo {
                 height: 180px;
                 -webkit-box-shadow: -11px 14px 19px -13px rgba(0, 0, 0, 0.4);
@@ -170,8 +172,9 @@
                     flex: 1;
                     display: flex;
                     gap: 10px;
-                    a{
-                        color:  #333;
+
+                    a {
+                        color: #333;
                     }
                 }
 
@@ -182,6 +185,7 @@
                     align-items: center;
                     gap: 10px;
                     color: #333;
+
                     span {
                         font-size: 30px;
                         font-weight: bold;
@@ -202,7 +206,8 @@
                             }
                         }
                     }
-                    button{
+
+                    button {
                         border: none;
                         background-color: rgb(33, 33, 160);
                         color: white;
@@ -221,6 +226,73 @@
                 }
             }
 
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+
+    .lightMode {
+        .profile {
+            .profileContainer {
+                padding: 10px;
+
+                .userInfo {
+                    flex-direction: column;
+                    height: 30vh;
+                    padding: 20px;
+                    margin-top: 90px;
+                }
+            }
+        }
+    }
+
+    .darkMode {
+        .profile {
+            .profileContainer {
+                padding: 10px;
+
+                .userInfo {
+                    flex-direction: column;
+                    height: 30vh;
+                    padding: 20px;
+                    margin-top: 90px;
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 960px) {
+
+
+    .lightMode {
+        .profile {
+            .profileContainer {
+                padding: 20px;
+
+                .userInfo {
+                   .left{
+                   flex-wrap: wrap;
+                   }
+                }
+            }
+        }
+    }
+
+    .darkMode {
+        .profile {
+            .profileContainer {
+                padding: 20px;
+
+                .userInfo {
+                    .left{
+                        flex-wrap: wrap;
+                        }
+                }
+            }
         }
     }
 }

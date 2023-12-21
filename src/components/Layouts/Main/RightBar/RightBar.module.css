@@ -209,8 +209,21 @@
             display: none;
         }
     }
-    .rightbar{
-        .leftbar{
+    .darkMode{
+        .rightbar{
+            display: none;
+        }
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .lightMode{
+        .rightbar{
+            display: none;
+        }
+    }
+    .darkMode{
+        .rightbar{
             display: none;
         }
     }

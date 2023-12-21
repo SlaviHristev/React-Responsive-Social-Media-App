@@ -69,3 +69,13 @@
     }
 
 }
+
+@media screen and (max-width: 480px) {
+
+    .stories {
+        height: 200px;
+        gap: 20px;
+       
+    }
+
+}

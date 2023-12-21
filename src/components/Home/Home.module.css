@@ -41,3 +41,18 @@
         }
     }
 }
+
+
+@media screen and (max-width: 960px) {
+   
+    .lightMode{
+        .home{
+            padding: 20px;
+        }
+    }
+    .darkMode{
+        .home{
+            padding: 20px;
+        }
+    }
+}
