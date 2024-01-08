@@ -34,7 +34,7 @@ export default function Post({ post }) {
 
                     </div>
                     <div className={styles.content}>
-                        <p>{post.description}</p>
+                        <p>{post.desc}</p>
                         <img src={post.img} alt="" />
                     </div>
                     <div className={styles.info}>
