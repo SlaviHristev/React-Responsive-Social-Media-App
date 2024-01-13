@@ -1,12 +1,12 @@
 import styles from './Share.module.css'
-import Image from "../../assets/img.png";
-import Map from "../../assets/map.png";
-import Friend from "../../assets/friend.png";
+// import Image from "../../assets/img.png";
+// import Map from "../../assets/map.png";
+// import Friend from "../../assets/friend.png";
 import { useContext, useState } from "react";
-import { AuthContext } from "../../context/authContext";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { AuthContext } from "../../contexts/AuthContext";
+import { useMutation, useQueryClient } from "react-query";
 import { makeRequest } from "../../axios";
-import { DarkModeContext } from '../../../../contexts/DarkModeContext';
+import { DarkModeContext } from "../../contexts/DarkModeContext";
 const Share = () => {
     const [file, setFile] = useState(null);
     const [desc, setDesc] = useState("");
@@ -32,7 +32,7 @@ const Share = () => {
         },
         {
             onSuccess: () => {
-                // Invalidate and refetch
+                
                 queryClient.invalidateQueries(["posts"]);
             },
         }
@@ -78,16 +78,16 @@ const Share = () => {
                             />
                             <label htmlFor="file">
                                 <div className={styles.item}>
-                                    <img src={Image} alt="" />
+                                    {/* <img src={Image} alt="" /> */}
                                     <span>Add Image</span>
                                 </div>
                             </label>
                             <div className={styles.item}>
-                                <img src={Map} alt="" />
+                                {/* <img src={Map} alt="" /> */}
                                 <span>Add Place</span>
                             </div>
                             <div className={styles.item}>
-                                <img src={Friend} alt="" />
+                                {/* <img src={Friend} alt="" /> */}
                                 <span>Tag Friends</span>
                             </div>
                         </div>
