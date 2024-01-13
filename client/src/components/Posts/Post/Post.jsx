@@ -52,7 +52,7 @@ export default function Post({ post }) {
                             3 shares
                         </div>
                     </div>
-                    {commentOpen && <Comments />}
+                    {commentOpen && <Comments postId={post.id} />}
                 </div>
             </div>
         </div>
