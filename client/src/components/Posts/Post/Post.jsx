@@ -8,6 +8,7 @@ import TextsmsIcon from '@mui/icons-material/Textsms';
 import { DarkModeContext } from '../../../contexts/DarkModeContext';
 import { useContext, useState } from 'react';
 import Comments from '../Comments/Comments';
+import moment from 'moment'
 
 export default function Post({ post }) {
     const [commentOpen, setCommentOpen] = useState(false);
@@ -26,7 +27,7 @@ export default function Post({ post }) {
                             <div className={styles.details}>
                                 <Link to={`/profile/${post.userId}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                     <span className={styles.name}>{post.name}</span>
-                                    <span className={styles.date}>2 minutes ago</span>
+                                    <span className={styles.date}>{moment(post.createdAt).fromNow()}</span>
                                 </Link>
                             </div>
                         </div>
