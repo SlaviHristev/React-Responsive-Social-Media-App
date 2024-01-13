@@ -35,7 +35,7 @@ export default function Post({ post }) {
                     </div>
                     <div className={styles.content}>
                         <p>{post.desc}</p>
-                        <img src={post.img} alt="" />
+                        <img src={"./upload/" + post.img} alt="" />
                     </div>
                     <div className={styles.info}>
                         <div className={styles.item}>
