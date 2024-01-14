@@ -9,13 +9,37 @@ import { DarkModeContext } from '../../../contexts/DarkModeContext';
 import { useContext, useState } from 'react';
 import Comments from '../Comments/Comments';
 import moment from 'moment'
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { makeRequest } from "../../../axios";
+import { AuthContext } from '../../../contexts/AuthContext';
 
 export default function Post({ post }) {
     const [commentOpen, setCommentOpen] = useState(false);
     const { darkMode } = useContext(DarkModeContext);
+    const {currentUser} = useContext(AuthContext);
 
+    const {isLoading,error,data} =useQuery(["likes", post.id], () =>
+        makeRequest.get("/likes?postId="+post.id).then((res) =>{
+            return res.data;
+        })
+    )
+    const queryClient = useQueryClient();
 
-    const liked = false;
+    const mutation = useMutation(
+        (liked) =>{
+            if(liked) return makeRequest.delete("/likes?postId=" + post.id);
+            return makeRequest.post("/likes", {postId:post.id});
+        },
+        {
+            onSuccess: () => {
+                
+                queryClient.invalidateQueries(["likes"]);
+              },
+        }
+    )
+    const handleClick = () =>{
+        mutation.mutate(data.includes(currentUser.id))
+    }
     return (
         <div className={darkMode ? styles.lightMode : styles.darkMode}>
             <div className={styles.post}>
@@ -40,8 +64,13 @@ export default function Post({ post }) {
                     </div>
                     <div className={styles.info}>
                         <div className={styles.item}>
-                            {liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-                            20 likes
+                            {isLoading ? "loading" : data.includes(currentUser.id)
+                            ? <FavoriteIcon onClick={handleClick} style={{color:"red"}} />
+                            : <FavoriteBorderIcon onClick={handleClick} />
+                            }
+                            {data === undefined ? 
+                            '0'
+                            :data.length} likes
                         </div>
                         <div className={styles.item} onClick={() => setCommentOpen(!commentOpen)}>
                             <TextsmsIcon />
