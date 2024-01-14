@@ -1,16 +1,21 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import styles from './Update.module.css'
 import { makeRequest } from '../../axios';
 import { useMutation, useQueryClient } from 'react-query';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { DarkModeContext } from '../../contexts/DarkModeContext';
 
 export default function Update({setOpenUpdate, user}){
 
     const [cover,setCover] = useState(null);
     const [profile,setProfile] = useState(null);
     const [texts,setTexts] = useState({
-        name:'',
-        ciry:''
+        email: user.email,
+        password: user.password,
+        name:user.name,
+        city:user.city
     })
+    const { darkMode } = useContext(DarkModeContext);
 
     const upload = async (file) =>{
         try {
@@ -55,16 +60,52 @@ export default function Update({setOpenUpdate, user}){
     };
 
     return(
+        <div className={darkMode ? styles.lightMode : styles.darkMode}>
         <div className={styles.update}>
-            Update
+            <div className={styles.wrapper}>
+            <h1>Update Your Profile</h1>
             <form >
-                <input type="file" onChange={e =>setCover(e.target.files[0])}/>
-                <input type="file" onChange={e => setProfile(e.target.files[0])}/>
-                <input type="text" name='name' onChange={handleChange}/>
-                <input type="text" name='city' onChange={handleChange}/>
+                <div className={styles.files}>
+                <label htmlFor="cover">
+                    <span>Cover Picture</span>
+                    <div className={styles.imgContainer}>
+                        <img src={
+                            cover
+                            ? URL.createObjectURL(cover)
+                            : "/upload/" + user.coverPic
+                        }
+                        alt=''
+                        />
+                        <CloudUploadIcon className={styles.icon}/>
+                    </div>
+                </label>
+                <input type="file" id='cover' style={{display:'none'}} onChange={e =>setCover(e.target.files[0])}/>
+                <label htmlFor="profile">
+                    <span>Profile Picture</span>
+                    <div className={styles.imgContainer}>
+                        <img src={
+                            profile
+                            ? URL.createObjectURL(profile)
+                            : "/upload/" + user.profilePic}
+                            alt="" />
+                            <CloudUploadIcon className={styles.icon}/>
+                    </div>
+                </label>
+                <input type="file" id='profile' style={{display: 'none'}} onChange={e => setProfile(e.target.files[0])}/>
+                </div>
+                <label>Email</label>
+                <input type="text" value={texts.email} name='email' onChange={handleChange}/>
+                <label>Password</label>
+                <input type="text" value={texts.password} name='password' onChange={handleChange}/>
+                <label>Name</label>
+                <input type="text" name='name' value={texts.name} onChange={handleChange} />
+                <label>Country / City</label>
+                <input type="text" name="city" value={texts.city} onChange={handleChange}/>
                 <button onClick={handleSubmit}>Update</button>
             </form>
-            <button onClick={() => setOpenUpdate(false)}>X</button>
+            <button className={styles.close} onClick={() => setOpenUpdate(false)}>close</button>
+            </div>
         </div> 
+        </div>
     )
 }
