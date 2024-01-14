@@ -61,8 +61,8 @@ export default function Profile() {
                 {isLoading ? "Loading..." : <>
                 
                 <div className={styles.images}>
-                    <img src={data.coverPic} alt="" className={styles.cover} />
-                    <img src={data.profilePic} alt="" className={styles.profilePic} />
+                    <img src={"/upload/"+data.coverPic} alt="" className={styles.cover} />
+                    <img src={"/upload/"+data.profilePic} alt="" className={styles.profilePic} />
                 </div>
                 <div className={styles.profileContainer}>
                     <div className={styles.userInfo}>
@@ -100,7 +100,7 @@ export default function Profile() {
                     {<Posts userId={userId} />}
                 </div>
                 </>}
-                {openUpdate && <Update setOpenUpdate={setOpenUpdate}/>}
+                {openUpdate && <Update setOpenUpdate={setOpenUpdate} user={data}/>}
             </div>         
         </div>
     )
