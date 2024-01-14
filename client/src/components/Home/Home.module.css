@@ -19,12 +19,14 @@
     .home{
         background-color:#f6f3f3 ;
         padding: 20px 70px;
+        min-height: 100vh;
     }
 }
 .darkMode{
     .home{
         background-color: #333;
         padding: 20px 70px;
+        min-height: 100vh;
     }
 }
 

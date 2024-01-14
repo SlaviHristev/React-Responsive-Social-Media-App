@@ -15,6 +15,7 @@ import { AuthContext } from '../../../contexts/AuthContext';
 
 export default function Post({ post }) {
     const [commentOpen, setCommentOpen] = useState(false);
+    const [menuOpen,setMenuOpen] = useState(false);
     const { darkMode } = useContext(DarkModeContext);
     const {currentUser} = useContext(AuthContext);
 
@@ -40,6 +41,22 @@ export default function Post({ post }) {
     const handleClick = () =>{
         mutation.mutate(data.includes(currentUser.id))
     }
+
+    const deleteMutation = useMutation(
+        (postId) =>{
+            return makeRequest.delete("/posts/" + postId);
+        },
+        {
+            onSuccess: () => {
+                
+                queryClient.invalidateQueries(["posts"]);
+              },
+        }
+    )
+
+    const handleDelete = () =>{
+        deleteMutation.mutate(post.id)
+    }
     return (
         <div className={darkMode ? styles.lightMode : styles.darkMode}>
             <div className={styles.post}>
@@ -55,8 +72,8 @@ export default function Post({ post }) {
                                 </Link>
                             </div>
                         </div>
-                        <MoreHorizIcon />
-
+                        <MoreHorizIcon onClick={() => setMenuOpen(!menuOpen)}/>
+                        {(menuOpen && post.userId === currentUser.id)  && <button onClick={handleDelete}>Delete</button>}
                     </div>
                     <div className={styles.content}>
                         <p>{post.desc}</p>
