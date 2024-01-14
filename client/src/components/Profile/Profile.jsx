@@ -11,11 +11,13 @@ import Posts from '../Posts/Posts'
 
 import styles from './Profile.module.css'
 import { DarkModeContext } from '../../contexts/DarkModeContext';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
+import Update from '../Update/Update';
 
 export default function Profile() {
+    const [openUpdate,setOpenUpdate] = useState(false)
     const { darkMode } = useContext(DarkModeContext);
     const { currentUser } = useContext(AuthContext)
     const userId = parseInt(useLocation().pathname.split("/")[2]);
@@ -87,7 +89,7 @@ export default function Profile() {
                                 </div>
                             </div>
                             {rIsLoading ? ("Loading") : userId === currentUser.id
-                                ? <button>Update</button>
+                                ? <button onClick={()=> setOpenUpdate(true)}>Update</button>
                                 : <button onClick={handleClick}>{relationshipData.includes(currentUser.id) ? "Following" : "Follow"}</button>}
                         </div>
                         <div className={styles.right}>
@@ -98,6 +100,7 @@ export default function Profile() {
                     {<Posts userId={userId} />}
                 </div>
                 </>}
+                {openUpdate && <Update setOpenUpdate={setOpenUpdate}/>}
             </div>         
         </div>
     )
