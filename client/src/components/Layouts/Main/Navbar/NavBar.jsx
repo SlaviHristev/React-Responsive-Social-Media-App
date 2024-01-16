@@ -41,7 +41,7 @@ export default function NavBar() {
                         <EmailIcon />
                         <NotificationsIcon />
                         <div className={styles.user}>
-                            <img src={currentUser.profilePic} alt="" />
+                            <img src={"/upload/" + currentUser.profilePic} alt="" />
                             <span>{currentUser.name}</span>
                         </div>
                     </div>

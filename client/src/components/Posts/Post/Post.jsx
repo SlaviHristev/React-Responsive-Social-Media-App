@@ -64,7 +64,7 @@ export default function Post({ post }) {
 
                     <div className={styles.user}>
                         <div className={styles.userInfo}>
-                            <img src={post.profilePic} alt="" />
+                            <img src={"/upload/"+post.profilePic} alt="" />
                             <div className={styles.details}>
                                 <Link to={`/profile/${post.userId}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                     <span className={styles.name}>{post.name}</span>
