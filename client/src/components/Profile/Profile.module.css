@@ -19,7 +19,9 @@
     @keyframes spin {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
+        
       }
+      min-height: 100vh;
       
       .spinner {
         border: 4px solid rgba(0, 0, 0, 0.1);
@@ -156,6 +158,7 @@
       
     .profile {
         background-color: #333;
+        min-height: 100vh;
 
         .images {
             width: 100%;

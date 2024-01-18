@@ -1,0 +1,53 @@
+/* :root {
+    --text-color-light: #000;
+    --bg-color-light: white;
+    --logo-color-light: darkblue;
+    --bg-soft-color-light: #f6f3f3;
+    --text-color-soft-light: #555;
+    --border-color-light: lightgray;
+
+    --text-color-dark: whitesmoke;
+    --bg-color-dark: #222;
+    --logo-color-dark: white;
+    --bg-soft-color-dark: #333;
+    --text-color-soft-dark: lightgray;
+    --border-color-dark: #444;
+} */
+
+.lightMode{
+    .container{
+        top: 60px;
+        right: 130px;
+        position: absolute;
+        background-color:white;
+        min-width: 100px;
+        z-index: 1;
+        span{
+        color: black;
+        padding: 15px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+        }
+    }
+}
+
+
+.darkMode{
+    .container{
+        top: 60px;
+        right: 130px;
+        position: absolute;
+        background-color:  #222;
+        min-width: 100px;
+        z-index: 1;
+        span{
+        cursor: pointer;
+        color: whitesmoke;
+        padding: 15px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+        }
+    }
+}

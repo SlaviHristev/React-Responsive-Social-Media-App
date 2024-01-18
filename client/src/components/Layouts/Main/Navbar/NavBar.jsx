@@ -10,15 +10,22 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 
 import styles from './NavBar.module.css'
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { DarkModeContext } from '../../../../contexts/DarkModeContext';
 import { AuthContext } from '../../../../contexts/AuthContext';
+import DropDownMenu from './DropDownMenu/DropDownMenu';
+
 
 
 export default function NavBar() {
     const { darkMode } = useContext(DarkModeContext);
     const { toggle } = useContext(DarkModeContext);
     const { currentUser } = useContext(AuthContext);
+    const [dropDown,setDropDown] = useState(false);
+
+
+   
+    
     return (
         <div className={darkMode ? styles.lightMode : styles.darkMode}>
            
@@ -37,11 +44,12 @@ export default function NavBar() {
                         </div>
                     </div>
                     <div className={styles.right}>
-                        <PersonIcon />
+                        <PersonIcon style={{cursor:"pointer"}} onClick={() => setDropDown(!dropDown)}/>
+                        {dropDown && <DropDownMenu/>}
                         <EmailIcon />
                         <NotificationsIcon />
                         <div className={styles.user}>
-                            <img src={"/upload/" + currentUser.profilePic} alt="" />
+                            <img src={"/upload/"+currentUser.profilePic} alt="" />
                             <span>{currentUser.name}</span>
                         </div>
                     </div>

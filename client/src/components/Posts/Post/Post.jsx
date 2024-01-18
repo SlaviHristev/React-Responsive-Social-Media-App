@@ -67,7 +67,7 @@ export default function Post({ post }) {
                             <img src={"/upload/"+post.profilePic} alt="" />
                             <div className={styles.details}>
                                 <Link to={`/profile/${post.userId}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                    <span className={styles.name}>{post.name}</span>
+                                    <span className={styles.name}>{post.name}    </span>
                                     <span className={styles.date}>{moment(post.createdAt).fromNow()}</span>
                                 </Link>
                             </div>
@@ -91,11 +91,11 @@ export default function Post({ post }) {
                         </div>
                         <div className={styles.item} onClick={() => setCommentOpen(!commentOpen)}>
                             <TextsmsIcon />
-                            2 comments
+                            Comments
                         </div>
                         <div className={styles.item}>
                             <ShareIcon />
-                            3 shares
+                            Share
                         </div>
                     </div>
                     {commentOpen && <Comments postId={post.id} />}
