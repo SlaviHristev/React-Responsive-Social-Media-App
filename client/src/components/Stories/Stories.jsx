@@ -4,13 +4,25 @@ import { AuthContext } from '../../contexts/AuthContext'
 import UploadStories from './UploadStories/UploadStories';
 import { useQuery } from 'react-query';
 import { makeRequest } from '../../axios';
-
+import ViewStory from './ViewStory/ViewStory';
 
 
 
 export default function Stories() {
     const { currentUser } = useContext(AuthContext);
     const [addStory, setAddStory] = useState(false);
+    const [selectedStory, setSelectedStory] = useState(null);
+    const [isViewerOpen, setIsViewerOpen] = useState(false);
+
+    const openViewer = (imageUrl) =>{
+        setSelectedStory(imageUrl);
+        setIsViewerOpen(true);
+    };
+
+    const closeViewer = () =>{
+        setSelectedStory(null);
+        setIsViewerOpen(false);
+    }
     
     const userId = currentUser ? currentUser.id : null;
     const { isLoading, error, data } = useQuery(['stories'], () =>
@@ -32,13 +44,14 @@ export default function Stories() {
                 isLoading
                     ? "Loading"
                     : data.map(story => (
-                        <div className={styles.story} key={story.id}>
+                        <div className={styles.story} key={story.id} onClick={() => openViewer('/upload/' + story.img)}>
                             <img src={"/upload/" + story.img} alt="" />
                             <span>{story.name}</span>
                         </div>
 
                     ))}
             {addStory && <UploadStories setAddStory={setAddStory} story={data}/>}
+            {isViewerOpen && <ViewStory imageUrl={selectedStory} onClose={closeViewer}/>}
             
         </div>
     )
