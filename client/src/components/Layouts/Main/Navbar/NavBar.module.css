@@ -82,7 +82,11 @@
                     object-fit: cover;
                 }
 
-                span {}
+                .userName{
+                    text-decoration: none;
+                    color: #000;
+                    border-bottom: none;
+                }
             }
         }
     }
@@ -150,7 +154,11 @@
                     object-fit: cover;
                 }
 
-                span {}
+                .userName {
+                    text-decoration: none;
+                    color: whitesmoke;
+                    border-bottom: none;
+                }
             }
         }
     }

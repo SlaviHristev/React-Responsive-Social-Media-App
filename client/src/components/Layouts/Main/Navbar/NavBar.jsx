@@ -34,7 +34,7 @@ export default function NavBar() {
                         <Link to={'/'} style={{ textDecoration: 'none' }}>
                             <span>Socical Media App</span>
                         </Link>
-                        <HomeIcon />
+                        <Link to={'/'} style={{textDecoration:'none', color:'none', fill:'none'}}><HomeIcon style={{color:'black', height:'50px', paddingTop:'5px'}}  /></Link>
                         {darkMode ? <DarkModeIcon onClick={toggle} />
                             : <LightModeIcon onClick={toggle} />}
                         <GridViewIcon />
@@ -48,10 +48,10 @@ export default function NavBar() {
                         {dropDown && <DropDownMenu/>}
                         <EmailIcon />
                         <NotificationsIcon />
-                        <div className={styles.user}>
+                        <Link style={{textDecoration:'none'}} to={'/profile/'+ currentUser.id}><div className={styles.user}>
                             <img src={"/upload/"+currentUser.profilePic} alt="" />
-                            <span>{currentUser.name}</span>
-                        </div>
+                            <span className={styles.userName}>{currentUser.name}</span>
+                        </div></Link>
                     </div>
                 </div>
            
