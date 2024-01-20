@@ -15,8 +15,10 @@ export default function Stories() {
     const userId = currentUser ? currentUser.id : null;
     const { isLoading, error, data } = useQuery(['stories'], () =>
     makeRequest.get("/stories?userId=" + userId).then((res) => {
+        console.log(currentUser);
         return res.data
     })
+   
 )
     return (
 
@@ -31,12 +33,13 @@ export default function Stories() {
                     ? "Loading"
                     : data.map(story => (
                         <div className={styles.story} key={story.id}>
-                            <img src={story.img} alt="" />
+                            <img src={"/upload/" + story.img} alt="" />
                             <span>{story.name}</span>
                         </div>
 
                     ))}
-            {addStory && <UploadStories setAddStory={setAddStory} />}
+            {addStory && <UploadStories setAddStory={setAddStory} story={data}/>}
+            
         </div>
     )
 }

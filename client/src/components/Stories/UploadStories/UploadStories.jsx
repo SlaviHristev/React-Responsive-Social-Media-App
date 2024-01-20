@@ -7,7 +7,7 @@ import { DarkModeContext } from '../../../contexts/DarkModeContext';
 
 
 
-export default function UploadStories({setAddStory}){
+export default function UploadStories({setAddStory, story}){
     const { darkMode } = useContext(DarkModeContext);
     const [uploadStory, setUploadStory] = useState(null);
 
@@ -16,11 +16,36 @@ export default function UploadStories({setAddStory}){
             const formData = new FormData();
             formData.append("file",file);
             const res = await makeRequest.post("/upload",formData);
+            console.log(res.data);
             return res.data;
         } catch (error) {
             console.log(error)           
         }
     }
+
+    const queryClient = useQueryClient();
+
+    const mutation = useMutation(
+        (newStory) => {
+            return makeRequest.post("/stories", newStory);
+        },
+        {
+            onSuccess: () => {
+                
+                queryClient.invalidateQueries(["stories"]);
+            },
+        }
+    );
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        let storyUrl;
+
+        storyUrl = uploadStory ? await upload(uploadStory) : story.img;
+
+        mutation.mutate({ img: storyUrl });
+        setAddStory(false)
+    };
 
     return(
         <div className={darkMode ? styles.lightMode : styles.darkMode}>
@@ -32,14 +57,21 @@ export default function UploadStories({setAddStory}){
                 <label htmlFor="story">
                     <span>Story</span>
                     <div className={styles.imgContainer}>
-                        
+                    <img src={
+                            uploadStory
+                            ? URL.createObjectURL(uploadStory)
+                            : story.img
+                        }
+                        alt=''
+                        />
                             <CloudUploadIcon className={styles.icon}/>
                     </div>
                 </label>
+                <input type="file" id='story' style={{display:'none'}} onChange={e =>setUploadStory(e.target.files[0])}/>
     
                
                 </div>
-                <button>Upload</button>
+                <button onClick={handleSubmit}>Upload</button>
             </form>
             <button className={styles.close} onClick={() => setAddStory(false)}>close</button>
             </div>

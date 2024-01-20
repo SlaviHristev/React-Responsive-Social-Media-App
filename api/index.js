@@ -11,6 +11,13 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import multer from "multer";
 
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 
 const app = express();
 app.use((req,res,next) =>{
@@ -24,13 +31,14 @@ app.use(cors({
 app.use(cookieParser());
 
 const storage = multer.diskStorage({
-    destination: function(req,file, cb){
-        cb(null,"../client/public/upload")
+    destination: function(req, file, cb) {
+        const uploadDir = path.join(__dirname, "../client/public/upload");
+        cb(null, uploadDir);
     },
-    filename: function(req,file,cb){
-        cb(null, Date.now() + file.originalname)
-    }
-})
+    filename: function(req, file, cb) {
+        cb(null, Date.now() + file.originalname);
+    },
+});
 
 const upload = multer({storage: storage})
 

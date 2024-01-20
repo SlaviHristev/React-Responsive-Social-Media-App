@@ -1,11 +1,11 @@
 import  Express  from "express";
-import { getStory } from "../controllers/story.js";
+import { getStory, addStory } from "../controllers/story.js";
 
 
 const router = Express.Router();
 
 router.get('/', getStory);
-// router.post('/', addStory);
+router.post('/', addStory);
 // router.delete('/', deleteStory);
 
 export default router;
