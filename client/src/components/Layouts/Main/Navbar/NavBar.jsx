@@ -34,7 +34,7 @@ export default function NavBar() {
                         <Link to={'/'} style={{ textDecoration: 'none' }}>
                             <span>Socical Media App</span>
                         </Link>
-                        <Link to={'/'} style={{textDecoration:'none', color:'none', fill:'none'}}><HomeIcon style={{color:'black', height:'50px', paddingTop:'5px'}}  /></Link>
+                        <Link to={'/'} style={{textDecoration:'none', color:'none', fill:'none'}}><HomeIcon style={{height:'50px', paddingTop:'5px'}}  /></Link>
                         {darkMode ? <DarkModeIcon onClick={toggle} />
                             : <LightModeIcon onClick={toggle} />}
                         <GridViewIcon />
