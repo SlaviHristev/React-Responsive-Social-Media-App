@@ -12,10 +12,12 @@ import moment from 'moment'
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { makeRequest } from "../../../axios";
 import { AuthContext } from '../../../contexts/AuthContext';
+import ImageView from '../ImageView/ImageView';
 
 export default function Post({ post }) {
     const [commentOpen, setCommentOpen] = useState(false);
     const [menuOpen,setMenuOpen] = useState(false);
+    const [isViewerOpen,setIsViewerOpen] = useState(false);
     const { darkMode } = useContext(DarkModeContext);
     const {currentUser} = useContext(AuthContext);
 
@@ -25,6 +27,10 @@ export default function Post({ post }) {
         })
     )
     const queryClient = useQueryClient();
+
+    const handleImageClick = () =>{
+        setIsViewerOpen(true);
+    }
 
     const mutation = useMutation(
         (liked) =>{
@@ -77,7 +83,7 @@ export default function Post({ post }) {
                     </div>
                     <div className={styles.content}>
                         <p>{post.desc}</p>
-                        <img src={"./upload/" + post.img} alt="" />
+                        <img src={"./upload/" + post.img} alt="" onClick={handleImageClick} />
                     </div>
                     <div className={styles.info}>
                         <div className={styles.item}>
@@ -99,6 +105,7 @@ export default function Post({ post }) {
                         </div>
                     </div>
                     {commentOpen && <Comments postId={post.id} />}
+                    {isViewerOpen && <ImageView imageUrl={post.img} onClose={()=> setIsViewerOpen(false)}/>}
                 </div>
             </div>
         </div>
