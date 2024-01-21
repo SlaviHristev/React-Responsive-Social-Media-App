@@ -1,9 +1,13 @@
 import { useContext } from 'react';
 import { DarkModeContext } from '../../../../contexts/DarkModeContext';
 import styles from './RightBar.module.css'
+import LatestActivities from './Activity/Activity';
+import { AuthContext } from '../../../../contexts/AuthContext';
 
 export default function RightBar() {
     const { darkMode } = useContext(DarkModeContext);
+    const {currentUser} = useContext(AuthContext);
+    console.log(currentUser);
     return (
         <div className={darkMode ? styles.lightMode : styles.darkMode}>
             <div className={styles.rightbar}>
@@ -31,37 +35,7 @@ export default function RightBar() {
                             </div>
                         </div>
                     </div>
-                    <div className={styles.item}>
-                        <span>Latest Activities</span>
-                        <div className={styles.user}>
-                            <div className={styles.userInfo}>
-                                <img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?cs=srgb&dl=pexels-simon-robben-614810.jpg&fm=jpg" alt="" />
-                                <p>
-                                    <span>Sam Doe</span>  Changed their picture.
-                                </p>
-                            </div>
-                            <span>2 minutes ago</span>
-                        </div>
-
-                        <div className={styles.user}>
-                            <div className={styles.userInfo}>
-                                <img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?cs=srgb&dl=pexels-simon-robben-614810.jpg&fm=jpg" alt="" />
-                                <p>
-                                    <span>Sam Doe</span>   Updated status.
-                                </p>
-                            </div>
-                            <span>10 minutes ago</span>
-                        </div>
-                        <div className={styles.user}>
-                            <div className={styles.userInfo}>
-                                <img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?cs=srgb&dl=pexels-simon-robben-614810.jpg&fm=jpg" alt="" />
-                                <p>
-                                    <span>Sam Doe</span>  Did something.
-                                </p>
-                            </div>
-                            <span>45 minutes ago</span>
-                        </div>
-                    </div>
+                    {<LatestActivities userId={currentUser.id}/>}
                     <div className={styles.item}>
                         <span>Online Friends</span>
                         <div className={styles.user}>
