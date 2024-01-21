@@ -12,10 +12,9 @@ export const getStory = (req, res) => {
     jwt.verify(token, "verySecretKey", (err, userInfo) => {
         if (err) return res.status(403).json("Token is not valid!");
 
-        const q = userId
-        ? `SELECT id, img, userId FROM stories WHERE userId = ?`
-        : `SELECT id, img, userId FROM stories LEFT JOIN relationships ON stories.userId = relationships.followedUserId
-           WHERE relationships.followerUserId = ? OR stories.userId = ?`;
+        const q = `SELECT s.*, name FROM stories AS s JOIN users AS u ON (u.id = s.userId)
+    LEFT JOIN relationships AS r ON (s.userId = r.followedUserId AND r.followerUserId= ?) LIMIT 4`;
+
 
         const values = userId !== undefined ? [userId] : [userInfo.id, userInfo.id];
 

@@ -41,7 +41,7 @@ export default function Comments({postId}) {
         <div className={darkMode ? styles.lightMode : styles.darkMode}>
             <div className={styles.comments}>
                 <div className={styles.write}>
-                    <img src={currentUser.profilePic} alt="" />
+                    <img src={'/upload/' + currentUser.profilePic} alt="" />
                     <input type="text" placeholder='Write a comment' value={desc} onChange={e => setDesc(e.target.value)}/>
                     <button onClick={handleClick}>Send</button>
                 </div>
@@ -49,7 +49,7 @@ export default function Comments({postId}) {
                 ?"loading"
                 : data.map(comment => (
                     <div className={styles.comment} key={comment.id}>
-                        <img src={comment.profilePic} alt="" />
+                        <img src={'/upload/' + comment.profilePic} alt="" />
                         <div className={styles.info}>
                             <span>{comment.name}</span>
                             <p>{comment.desc}</p>
