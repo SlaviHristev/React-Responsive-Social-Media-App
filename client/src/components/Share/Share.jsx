@@ -38,15 +38,42 @@ const Share = () => {
             },
         }
     );
+    const useRecordActivityMutation = () => {
+        const queryClient = useQueryClient();
+    
+        return useMutation(
+            (activityData) => {
+                
+                return makeRequest.post("/activities", activityData);
+            },
+            {
+                onSuccess: () => {
+                    
+                    queryClient.invalidateQueries(["useractivities"]);
+                },
+            }
+        );
+    };
+
+    const recordActivityMutation = useRecordActivityMutation()
+
 
     const handleClick = async (e) => {
         e.preventDefault();
         let imgUrl = "";
+        const userId = currentUser.id;
+        const activityDetails = `${currentUser.username} has added a new post!`
         if (file) imgUrl = await upload();
         mutation.mutate({ desc, img: imgUrl });
         setDesc("");
         setFile(null);
+        recordActivityMutation.mutate({
+            userId,
+            activityDetails
+        })
+        
     };
+
 
     return (
         <div className={darkMode ? styles.lightMode : styles.darkMode}>

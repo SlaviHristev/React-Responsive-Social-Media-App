@@ -1,8 +1,15 @@
 import { db } from '../connectDb.js';
 import jwt from 'jsonwebtoken'
-export const recordActivity = (userId, activityType, activityDetails) => {
-    const q = `INSERT INTO useractivities (userId, activityType, activityDetails) VALUES = (?)`
-    const values = [userId, activityType, activityDetails];
+import moment from 'moment'
+
+export const recordActivity = (req,res) => {
+    const q = `INSERT INTO useractivities (userId,createdAt,activityDetails) VALUES (?,?,?)`
+    const values = [
+        req.body.userId,
+        moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
+        req.body.activityDetails
+    ];
+    
 
     db.query(q, values, (err, data) => {
         if (err) {
@@ -20,7 +27,7 @@ export const getLatestActivities = (req, res) => {
     jwt.verify(token, "verySecretKey", (err, userInfo) => {
         if (err) return res.status(403).json("Token is not valid!")
 
-        const q = `SELECT ua.id AS activityId, ua.userId, ua.activityType, ua.activityDetails, ua.createdAt,
+        const q = `SELECT ua.id AS activityId, ua.userId, ua.activityDetails, ua.createdAt,
         u.id AS userId, u.username, u.profilePic
  FROM useractivities ua
  JOIN users u ON ua.userId = u.id
@@ -33,7 +40,7 @@ export const getLatestActivities = (req, res) => {
                 console.error('Database error:', err);
                 return res.status(500).json({ error: 'Internal Server Error', details: err.message });
             }
-            console.log('Query result:', data);
+            
             return res.status(200).json(data);
 
         })

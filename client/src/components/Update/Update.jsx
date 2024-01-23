@@ -5,6 +5,7 @@ import { useMutation, useQueryClient } from 'react-query';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { DarkModeContext } from '../../contexts/DarkModeContext';
 
+
 export default function Update({setOpenUpdate, user}){
 
     const [cover,setCover] = useState(null);
@@ -42,6 +43,25 @@ export default function Update({setOpenUpdate, user}){
         }
     );
 
+    const useRecordActivityMutation = () => {
+        const queryClient = useQueryClient();
+    
+        return useMutation(
+            (activityData) => {
+                
+                return makeRequest.post("/activities", activityData);
+            },
+            {
+                onSuccess: () => {
+                    
+                    queryClient.invalidateQueries(["latestActivities"]);
+                },
+            }
+        );
+    };
+
+    const recordActivityMutation = useRecordActivityMutation()
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         let coverUrl;
@@ -50,8 +70,16 @@ export default function Update({setOpenUpdate, user}){
         coverUrl = cover ? await upload(cover) : user.coverPic;
         profileUrl = profile ? await upload(profile) : user.profilePic;
 
+        const userId = user.id;
+        const activityDetails = `${user.username} has updated their profile!`
+
         mutation.mutate({ ...texts, coverPic: coverUrl, profilePic: profileUrl });
         setOpenUpdate(false)
+        
+       recordActivityMutation.mutate({
+            userId,
+            activityDetails
+       })
     };
 
 
