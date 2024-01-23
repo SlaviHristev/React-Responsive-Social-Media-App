@@ -4,13 +4,14 @@ import { makeRequest } from '../../../axios';
 import { useMutation, useQueryClient } from 'react-query';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { DarkModeContext } from '../../../contexts/DarkModeContext';
+import { AuthContext } from '../../../contexts/AuthContext';
 
 
 
 export default function UploadStories({setAddStory, story}){
     const { darkMode } = useContext(DarkModeContext);
     const [uploadStory, setUploadStory] = useState(null);
-
+    const {currentUser} = useContext(AuthContext);
     const upload = async (file) =>{
         try {
             const formData = new FormData();
@@ -37,14 +38,40 @@ export default function UploadStories({setAddStory, story}){
         }
     );
 
+    const useRecordActivityMutation = () => {
+        const queryClient = useQueryClient();
+    
+        return useMutation(
+            (activityData) => {
+                
+                return makeRequest.post("/activities", activityData);
+            },
+            {
+                onSuccess: () => {
+                    
+                    queryClient.invalidateQueries(["useractivities"]);
+                },
+            }
+        );
+    };
+
+    const recordActivityMutation = useRecordActivityMutation()
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         let storyUrl;
+        const userId = currentUser.id;
+        const activityDetails = `${currentUser.username} has added a story!`
 
         storyUrl = uploadStory ? await upload(uploadStory) : story.img;
 
         mutation.mutate({ img: storyUrl });
         setAddStory(false)
+
+        recordActivityMutation.mutate({
+            userId,
+            activityDetails
+        })
     };
 
     return(

@@ -54,7 +54,7 @@ export default function Update({setOpenUpdate, user}){
             {
                 onSuccess: () => {
                     
-                    queryClient.invalidateQueries(["latestActivities"]);
+                    queryClient.invalidateQueries(["useractivities"]);
                 },
             }
         );
