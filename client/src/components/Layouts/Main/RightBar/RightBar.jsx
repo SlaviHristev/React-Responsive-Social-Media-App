@@ -13,7 +13,7 @@ export default function RightBar() {
         <div className={darkMode ? styles.lightMode : styles.darkMode}>
             <div className={styles.rightbar}>
                 <div className={styles.container}>
-                    {<Suggestions userId={currentUser.id} darkMode={darkMode}/>}
+                    {<Suggestions currentUser={currentUser} darkMode={darkMode}/>}
                     {<LatestActivities userId={currentUser.id} darkMode={darkMode}/>}
                     <div className={styles.item}>
                         <span>Online Friends</span>

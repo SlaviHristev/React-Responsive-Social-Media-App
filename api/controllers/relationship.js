@@ -20,13 +20,14 @@ export const addRelationship = (req, res) => {
     if (!token) return res.status(401).json("Not logged in!");
 
     jwt.verify(token, "verySecretKey", (err, userInfo) => {
-        if (err) return res.status(403).json("Token is not valid!")
+        if (err) return res.status(403).json("Token is not valid!");
+        console.log(req.body);
 
         const q = "INSERT INTO relationships (`followerUserId`,`followedUserId`) VALUES  (?)";
 
         const values = [
             userInfo.id,
-            req.body.userId
+            req.body.followedUserId || req.body.userId
 
         ];
 
