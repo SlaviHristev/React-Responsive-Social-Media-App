@@ -41,7 +41,7 @@ export const updateUser = (req,res) =>{
 
 export const getNotFollowedUsers = (req,res) =>{
     const userId = req.params.userId;
-    console.log(userId);
+
     const q = `
     SELECT users.*
     FROM users

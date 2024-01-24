@@ -6,6 +6,6 @@ const router = Express.Router();
 
 router.get('/find/:userId',getUser);
 router.put('/',updateUser);
-router.get('/notfollowed', getNotFollowedUsers);
+router.get('/notfollowed/:userId', getNotFollowedUsers);
 
 export default router;

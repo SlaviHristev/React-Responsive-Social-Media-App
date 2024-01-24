@@ -5,23 +5,23 @@ import styles from './Suggestions.module.css';
 
 export default function Suggestions({userId,darkMode}){
     
-    const { isLoading, error, data } = useQuery(['users'], () => {     
-        return makeRequest.get(`/users/notfollowed`).then((res) => {
+    const { isLoading, error, data } = useQuery(['users',userId], () => {     
+        return makeRequest.get(`/users/notfollowed/${userId}`).then((res) => {
           return res.data;
         });
       });
 
-      console.log(data);
     return(
+        <div className={darkMode ? styles.lightMode : styles.darkMode}>
         <div className={styles.item}>
                     <span>Suggestions For You</span>
                     {isLoading ? (
                     'loading'
                     ) : data ? ( 
                         data.map((suggestions =>(
-                            <div className={styles.user}>
+                            <div className={styles.user} key={suggestions.id}>
                                 <div className={styles.userInfo}>
-                                    <img src={`/upload/`+suggestions.profilePic} alt="" />
+                                    <img src={`/upload/`+suggestions.profilePic} alt=""/>
                                     <span>{suggestions.username}</span>
                                 </div>
                                 <div className={styles.buttons}>
@@ -33,6 +33,7 @@ export default function Suggestions({userId,darkMode}){
                         )): (
                             'No suggestions found!'
                           )}
-        </div>       
+        </div>
+        </div>
     )
 }
