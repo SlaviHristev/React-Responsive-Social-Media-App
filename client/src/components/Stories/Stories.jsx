@@ -27,7 +27,7 @@ export default function Stories() {
     const userId = currentUser ? currentUser.id : null;
     const { isLoading, error, data } = useQuery(['stories'], () =>
     makeRequest.get("/stories?userId=" + userId).then((res) => {
-        console.log(currentUser);
+        
         return res.data
     })
 )

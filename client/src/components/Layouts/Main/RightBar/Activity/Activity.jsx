@@ -5,7 +5,7 @@ import moment from "moment";
 import styles from './Activity.module.css';
 
 
-export default function LatestActivities({userId}){
+export default function LatestActivities({userId, darkMode}){
     const { isLoading, error, data } = useQuery(['useractivities'], () => {     
         return makeRequest.get(`/activities`).then((res) => {
           return res.data;
@@ -13,6 +13,7 @@ export default function LatestActivities({userId}){
       });
     
     return (
+      <div className={darkMode ? styles.lightMode : styles.darkMode}>
         <div className={styles.item}>
           <span>Latest Activities</span>
           {isLoading ? (
@@ -33,6 +34,7 @@ export default function LatestActivities({userId}){
           ) : (
             'No activities found'
           )}
+        </div>
         </div>
       );
 }

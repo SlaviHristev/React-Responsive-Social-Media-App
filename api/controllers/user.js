@@ -38,3 +38,23 @@ export const updateUser = (req,res) =>{
     })
 
 };
+
+export const getNotFollowedUsers = (req,res) =>{
+    const userId = req.params.userId;
+    console.log(userId);
+    const q = `
+    SELECT users.*
+    FROM users
+    WHERE users.id <> ?  -- Exclude the current user
+    AND users.id NOT IN (
+        SELECT followedUserId
+        FROM relationships
+        WHERE followerUserId = ?
+    );
+`;
+
+        db.query(q,[userId,userId], (err,data) =>{
+            if(err) return res.status(500).json(err);
+            res.status(200).json(data);
+        })
+}
