@@ -1,4 +1,4 @@
-import moment from 'moment/moment.js';
+
 import {db} from '../connectDb.js';
 import  jwt  from 'jsonwebtoken';
 
@@ -57,4 +57,20 @@ export const getNotFollowedUsers = (req,res) =>{
             if(err) return res.status(500).json(err);
             res.status(200).json(data);
         })
+}
+
+export const getOnlineFollowedUsers = (req,res) =>{
+const userId = req.params.userId;
+
+
+const q = `SELECT users.* FROM users JOIN relationships ON users.id = relationships.followedUserId WHERE relationships.followerUserId = ? AND users.isOnline = true`;
+
+db.query(q,[userId], (err,data) =>{
+    if(err){
+        console.log('Error fetching online followed users:',err);
+        return res.status(500).json({error: 'Internal Server Error'})
+    };
+
+    return res.status(200).json(data);
+})
 }

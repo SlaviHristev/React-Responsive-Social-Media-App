@@ -1,0 +1,107 @@
+.lightMode{
+    .item {
+        -webkit-box-shadow: -11px 14px 19px -13px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: -11px 14px 19px -13px rgba(0, 0, 0, 0.4);
+        box-shadow: -11px 14px 19px -13px rgba(0, 0, 0, 0.4);
+        padding: 20px;
+        margin-bottom: 20px;
+
+        span {
+            color: gray;
+        }
+
+        .user {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 20px 0px;
+
+            .userInfo {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                position: relative;
+
+                img {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+
+                .online {
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                    background-color: greenyellow;
+                    position: absolute;
+                    top: 0;
+                    left: 25px;
+                }
+
+                p {
+                    color: gray;
+                }
+
+                span {
+                    font-weight: bold;
+                    color: black;
+                }
+            }
+        }
+    }
+}
+.darkMode{
+    .item {
+        -webkit-box-shadow: -11px 14px 19px -13px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: -11px 14px 19px -13px rgba(0, 0, 0, 0.4);
+        box-shadow: -11px 14px 19px -13px rgba(0, 0, 0, 0.4);
+        padding: 20px;
+        margin-bottom: 20px;
+        background-color: #222;
+
+        span {
+            color: gray;
+        }
+
+        .user {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 20px 0px;
+
+            .userInfo {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                position: relative;
+
+                img {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+
+                .online {
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                    background-color: greenyellow;
+                    position: absolute;
+                    top: 0;
+                    left: 25px;
+                }
+
+                p {
+                    color: lightgray;
+                }
+
+                span {
+                    font-weight: bold;
+                    color: whitesmoke;
+                }
+            }
+        }
+    }
+}
