@@ -2,6 +2,7 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { makeRequest } from "../../../../../axios.js";
 import styles from './Suggestions.module.css';
+import { Link } from "react-router-dom";
 
 export default function Suggestions({currentUser,darkMode}){
     const userId = currentUser.id
@@ -46,10 +47,10 @@ export default function Suggestions({currentUser,darkMode}){
                     ) : data ? ( 
                         data.map((suggestions =>(
                             <div className={styles.user} key={suggestions.id}>
-                                <div className={styles.userInfo}>
+                                <Link to={`/profile/`+suggestions.id} style={{textDecoration:'none'}}><div className={styles.userInfo}>
                                     <img src={`/upload/`+suggestions.profilePic} alt=""/>
                                     <span>{suggestions.username}</span>
-                                </div>
+                                </div></Link>
                                 <div className={styles.buttons}>
                                 <button onClick={() => handleFollow(suggestions.id)}>Follow</button>
                                     <button onClick={() => handleDismiss(suggestions.id)}>Dismiss</button>
