@@ -11,7 +11,6 @@ export default function Suggestions({currentUser,darkMode}){
         });
       });
 
-    
       const queryClient = useQueryClient();
     
       const mutation = useMutation(
@@ -31,6 +30,13 @@ export default function Suggestions({currentUser,darkMode}){
         mutation.mutate(followedUserId);
       };
 
+      const handleDismiss = (dismissedUserId) => {
+        
+        const updatedData = data.filter(user => user.id !== dismissedUserId);
+        
+        queryClient.setQueryData(['users', userId], updatedData);
+    };
+
     return(
         <div className={darkMode ? styles.lightMode : styles.darkMode}>
         <div className={styles.item}>
@@ -46,7 +52,7 @@ export default function Suggestions({currentUser,darkMode}){
                                 </div>
                                 <div className={styles.buttons}>
                                 <button onClick={() => handleFollow(suggestions.id)}>Follow</button>
-                                    <button>Dismiss</button>
+                                    <button onClick={() => handleDismiss(suggestions.id)}>Dismiss</button>
                                 </div>
                             </div>
                         ))
