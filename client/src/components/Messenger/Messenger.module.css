@@ -1,0 +1,18 @@
+.lightMode{
+    .messenger{
+        height: calc(100vh - 70px);
+        display: flex;
+    }
+    .chatMenu{
+        flex: 3.5;
+    }
+    .chatBox{
+        flex: 5.5;
+    }
+    .chatMenu{
+        flex: 3;
+    }
+}
+.darkMode{
+
+}

@@ -8,6 +8,7 @@ import Home from "./components/Home/Home"
 import Profile from "./components/Profile/Profile"
 import ProtectedRoutes from "./guards/routeGuard"
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
+import Messenger from "./components/Messenger/Messenger"
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/profile/:id" element={<Profile />} />
         </Route>
+        <Route path="/messenger" element={<Messenger/>}/>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
       </Routes>
