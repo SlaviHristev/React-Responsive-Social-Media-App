@@ -5,6 +5,7 @@ import NavBar from '../Layouts/Main/Navbar/NavBar'
 import styles from './Messenger.module.css'
 import Conversations from './Conversations/Conversations';
 import Message from './Message/Message';
+import Online from './Online/Online';
 
 export default function Messenger(){
     const { darkMode } = useContext(DarkModeContext);
@@ -25,15 +26,30 @@ export default function Messenger(){
                         <Message/>
                         <Message own={true}/>
                         <Message/>
+                        <Message/>
+                        <Message/>
+                        <Message/>
+                        <Message/>
+                        <Message/>
+                        <Message/>
+                        <Message/>
+                        <Message/>
+                        <Message/>
+                        <Message/>
+                        <Message/>
+                        <Message/>
+                        <Message/>
+                        <Message/>
                     </div>
                     <div className={styles.chatBoxBottom}>
-
+                        <textarea placeholder='Write Something...' className={styles.chatMessage}></textarea>
+                        <button className={styles.chatSubmitButton}>Send</button>
                     </div>
                 </div>
             </div>
             <div className={styles.chatOnline}>
                 <div className={styles.chatOnlineWrapper}>
-                    online
+                    <Online/>
                 </div>
             </div>
         </div>

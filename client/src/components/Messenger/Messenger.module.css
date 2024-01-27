@@ -1,15 +1,17 @@
-.lightMode{
-    .messenger{
+.lightMode {
+    .messenger {
         padding-top: 70px;
         min-height: 100vh;
         display: flex;
 
-        .chatMenu{
+        .chatMenu {
             flex: 3.5;
-            .chatMenuWrapper{
+
+            .chatMenuWrapper {
                 padding: 10px;
                 height: 100%;
-                .chatMenuInput{
+
+                .chatMenuInput {
                     width: 90%;
                     padding: 10px 0;
                     border: none;
@@ -17,43 +19,94 @@
                 }
             }
         }
-        .chatBox{
+
+        .chatBox {
             flex: 5.5;
-            .chatBoxWrapper{
+
+            .chatBoxWrapper {
                 padding: 10px;
                 height: 100%;
+                display: flex;
+                flex-direction: column;
+
+
+                .chatBoxTop {
+                    position: sticky;
+                    height: calc(100vh - 70px);
+                    overflow: scroll;
+
+                    padding-right: 10px;
+
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
+
+                }
+
+                .chatBoxBottom {
+                    margin-top: 5px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    .chatMessage {
+                        width: 80%;
+                        height: 90px;
+                        padding: 10px;
+
+                    }
+
+                    .chatSubmitButton {
+                        width: 70px;
+                        height: 40px;
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        background-color: teal;
+                        color: white;
+                    }
+                }
             }
         }
-        .chatOnline{
+
+        .chatOnline {
             flex: 3;
-            .chatOnlineWrapper{
+
+            .chatOnlineWrapper {
                 padding: 10px;
                 height: 100%;
             }
         }
     }
-   
+
 }
-.darkMode{
-    .messenger{
+
+.darkMode {
+    .messenger {
         height: calc(100vh -70px);
         display: flex;
     }
-    .chatMenu{
+
+    .chatMenu {
         flex: 3.5;
-        .chatMenuWrapper{
+
+        .chatMenuWrapper {
             padding: 10px
         }
     }
-    .chatBox{
+
+    .chatBox {
         flex: 5.5;
-        .chatBoxWrapper{
+
+        .chatBoxWrapper {
             padding: 10px
         }
     }
-    .chatOnline{
+
+    .chatOnline {
         flex: 3;
-        .chatOnlineWrapper{
+
+        .chatOnlineWrapper {
             padding: 10px
         }
     }
