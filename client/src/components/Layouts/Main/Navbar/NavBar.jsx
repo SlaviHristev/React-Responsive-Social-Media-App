@@ -45,7 +45,7 @@ export default function NavBar() {
                     </div>
                     <div className={styles.right}>
                         <PersonIcon style={{cursor:"pointer"}} onClick={() => setDropDown(!dropDown)}/>
-                        {dropDown && <DropDownMenu/>}
+                        {dropDown && <DropDownMenu userId={currentUser.id}/>}
                         <EmailIcon />
                         <NotificationsIcon />
                         <Link style={{textDecoration:'none'}} to={'/profile/'+ currentUser.id}><div className={styles.user}>

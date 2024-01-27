@@ -1,6 +1,7 @@
 import { useQuery } from "react-query";
 import { makeRequest } from "../../../../../axios.js";
 import styles from './OnlineFollowedUsers.module.css';
+import { Link } from "react-router-dom";
 
 export default function OnlineFollowedUsers({darkMode, currentUser}) {
     const { isLoading, error, data } = useQuery(['users'], () => {     
@@ -8,7 +9,7 @@ export default function OnlineFollowedUsers({darkMode, currentUser}) {
           return res.data;
         });
       });
-      console.log(data);
+      
     return (
         <div className={darkMode ? styles.lightMode : styles.darkMode}>
         <div className={styles.item}>
@@ -21,9 +22,9 @@ export default function OnlineFollowedUsers({darkMode, currentUser}) {
             
             <div className={styles.user} key={user.id}>
                 <div className={styles.userInfo}>
-                    <img src={`/upload/` + user.profilePic} alt="" />
+                   <Link to={`/profile/` + user.id} style={{textDecoration:'none', display:'flex', alignItems:'center', gap:'20px'}}><img src={`/upload/` + user.profilePic} alt="" />
                     <div className={styles.online} />
-                    <span>{user.username}</span>
+                    <span>{user.username}</span></Link>
                 </div>
             </div>
               ))

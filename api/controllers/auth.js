@@ -53,8 +53,21 @@ export const register = (req, res) => {
 }
 
 export const logout = (req, res) => {
-    res.clearCookie("accessToken", {
-        secure: true,
-        sameSite: "none"
-    }).status(200).json("User has successfully logged out!")
-}
+    const userId = req.params.userId
+    console.log(userId);
+    const q = `UPDATE users SET isOnline = false WHERE id = ?`;
+    
+    db.query(q, [userId], (err, result) => {
+        if (err) {
+            console.error('Error updating user activity on logout!', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+            return;
+        }
+
+        
+        res.clearCookie("accessToken", {
+            secure: true,
+            sameSite: "none"
+        }).status(200).json("User has successfully logged out!");
+    });
+};
