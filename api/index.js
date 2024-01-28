@@ -7,6 +7,8 @@ import authRoutes from './routes/auth.js'
 import relationshipRoutes from './routes/relationships.js'
 import storiesRoutes from './routes/stories.js'
 import activityRoutes  from './routes/activity.js';
+import conversationRoutes  from './routes/conversations.js';
+import messagesRoutes  from './routes/messages.js';
 import { db } from "./connectDb.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
@@ -64,6 +66,8 @@ app.use('/api/comments', commentRoutes);
 app.use('/api/relationships', relationshipRoutes)
 app.use('/api/stories',storiesRoutes);
 app.use('/api/activities', activityRoutes);
+app.use('/api/conversations', conversationRoutes);
+app.use('/api/messages', messagesRoutes);
 
 app.listen(5000, () => {
     console.log("Server is running on port 5000...");
