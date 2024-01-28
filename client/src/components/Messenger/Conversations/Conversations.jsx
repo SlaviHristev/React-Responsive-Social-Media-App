@@ -11,7 +11,7 @@ export default function Conversations({conversation, currentUser}){
         return res.data
     })
     )
-    console.log(data);
+    
 
     return(
         <div className={styles.conversation}>
