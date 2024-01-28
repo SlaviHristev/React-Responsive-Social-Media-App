@@ -6,9 +6,20 @@ import styles from './Messenger.module.css'
 import Conversations from './Conversations/Conversations';
 import Message from './Message/Message';
 import Online from './Online/Online';
+import { AuthContext } from '../../contexts/AuthContext';
+import { useQuery } from 'react-query';
+import { makeRequest } from '../../axios';
 
 export default function Messenger(){
+    const { currentUser } = useContext(AuthContext)
     const { darkMode } = useContext(DarkModeContext);
+
+    const { isLoading, error, data } = useQuery(['conversation'], () =>
+    makeRequest.get("/conversations/"+currentUser.id).then((res) =>{
+        return res.data
+    })
+    )
+    
     return(
         <>
         <NavBar/>
@@ -16,8 +27,13 @@ export default function Messenger(){
         <div className={styles.messenger}>
             <div className={styles.chatMenu}>
                 <div className={styles.chatMenuWrapper}>
-                    <input placeholder='Search for friends' className={styles.chatMenuInput} />
-                    <Conversations/>
+                    <input placeholder='Search for friends' className={styles.chatMenuInput}/>
+                    {error ? "Something went wrong!" : 
+                    isLoading
+                    ? "Loading"
+                    : data.map(conversation =>(
+                        <Conversations key={conversation.id} conversation={conversation} currentUser={currentUser}/>
+                    ))}
                 </div>
             </div>
             <div className={styles.chatBox}>
@@ -33,13 +49,7 @@ export default function Messenger(){
                         <Message/>
                         <Message/>
                         <Message/>
-                        <Message/>
-                        <Message/>
-                        <Message/>
-                        <Message/>
-                        <Message/>
-                        <Message/>
-                        <Message/>
+                      
                     </div>
                     <div className={styles.chatBoxBottom}>
                         <textarea placeholder='Write Something...' className={styles.chatMessage}></textarea>

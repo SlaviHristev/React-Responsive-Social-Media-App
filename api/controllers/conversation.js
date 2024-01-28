@@ -20,7 +20,7 @@ export const addConversation = (req,res) =>{
 
 export const getConversation = (req,res)=>{
      const q = `SELECT id,members,created_at,updated_at FROM conversation WHERE JSON_CONTAINS(members,JSON_ARRAY(?), '$') > 0`;
-
+     
      const userId = req.params.userId;
 
      db.query(q, [userId], (err,data) =>{

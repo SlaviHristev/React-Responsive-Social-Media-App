@@ -34,15 +34,16 @@ function App() {
 
   return (
     <>
+    <QueryClientProvider  client={queryClient}>
       <Routes>
         <Route path="/" element={<ProtectedRoutes><Layout /></ProtectedRoutes>} >
-          <Route path="/" element={<Home />} />
-          <Route path="/profile/:id" element={<Profile />} />
-        </Route>
+        <Route path="/" element={<Home />} />
+        <Route path="/profile/:id" element={<Profile />} /></Route>
         <Route path="/messenger" element={<Messenger/>}/>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
       </Routes>
+      </QueryClientProvider>
     </>
   )
 }

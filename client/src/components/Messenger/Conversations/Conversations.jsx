@@ -1,12 +1,22 @@
+import { useQuery } from 'react-query';
 import styles from './Conversations.module.css';
+import { makeRequest } from '../../../axios';
 
 
-export default function Conversations(){
+export default function Conversations({conversation, currentUser}){
+
+    const friendId = conversation.members.find((member) => String(member) !== String(currentUser.id));
+    const { isLoading, error, data } = useQuery(['users'], () =>
+    makeRequest.get("/users/find/"+ friendId).then((res) =>{
+        return res.data
+    })
+    )
+    console.log(data);
 
     return(
         <div className={styles.conversation}>
-            <img className={styles.conversationImg} src='https://images.pexels.com/photos/19991875/pexels-photo-19991875/free-photo-of-sight-mate.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt=''/>
-            <span className={styles.conversationName}>Test</span>
+            <img className={styles.conversationImg} src={`/upload/`+data.profilePic} alt=''/>
+            <span className={styles.conversationName}>{data.username}</span>
 
         </div>
     )
