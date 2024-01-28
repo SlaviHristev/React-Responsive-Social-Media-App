@@ -1,10 +1,11 @@
 import  express  from "express";
+import { addConversation,getConversation } from '../controllers/conversation.js'
 
 
 const router = express.Router();
 
-router.post('/');
-router.get('/');
+router.post('/', addConversation);
+router.get('/:userId',getConversation);
 
 
 
