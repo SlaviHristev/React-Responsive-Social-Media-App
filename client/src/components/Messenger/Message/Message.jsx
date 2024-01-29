@@ -1,18 +1,18 @@
 import styles from './Message.module.css';
+import moment from 'moment'
 
-
-export default function Message({own}) {
+export default function Message({ message, own }) {
+    const formattedTimestamp = moment(message.created_at).format('MMM D, YYYY [at] h:mm A');
 
     return (
         <div className={own ? styles.own : styles.message}>
             <div className={styles.messageTop}>
-                <img className={styles.messageImg} src="https://images.pexels.com/photos/19991875/pexels-photo-19991875/free-photo-of-sight-mate.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
-                <p className={styles.messageText}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, amet sint id eos quisquam rerum! Minus, quos! Perferendis, dignissimos voluptatem?</p>
+                <img className={styles.messageImg} src="" alt="" />
+                <p className={styles.messageText}>{message.text}</p>
             </div>
             <div className={styles.messageBottom}>
-                30 minutes ago
+                {formattedTimestamp}
             </div>
-
         </div>
-    )
+    );
 }

@@ -15,8 +15,14 @@ export default function Conversations({conversation, currentUser}){
 
     return(
         <div className={styles.conversation}>
+            {error ? "Something went wrong!" : 
+            isLoading
+            ? "Loading"
+            :
+            (<>
             <img className={styles.conversationImg} src={`/upload/`+data.profilePic} alt=''/>
             <span className={styles.conversationName}>{data.username}</span>
+            </>)}
 
         </div>
     )

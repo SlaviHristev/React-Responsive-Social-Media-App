@@ -22,12 +22,15 @@
 
         .chatBox {
             flex: 5.5;
+            
 
             .chatBoxWrapper {
                 padding: 10px;
                 height: 100%;
                 display: flex;
                 flex-direction: column;
+                position: relative;
+                
 
 
                 .chatBoxTop {
@@ -65,7 +68,16 @@
                         background-color: teal;
                         color: white;
                     }
+                   
                 }
+                
+            }
+            .noConversation{
+                position: absolute;
+                top: 20%;
+                font-size: 50px;
+                color:rgb(209, 204, 204);
+                cursor: default;
             }
         }
 
@@ -111,3 +123,4 @@
         }
     }
 }
+

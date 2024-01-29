@@ -6,7 +6,7 @@ export default function Online(){
         <div className={styles.online}>
             <div className={styles.onlineFriend}>
                 <div className={styles.onlineFriendImgContainer}>
-                    <img src="https://images.pexels.com/photos/19991875/pexels-photo-19991875/free-photo-of-sight-mate.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
+                    <img src="" alt="" />
                     <div className={styles.onlineBadge}>
 
                     </div>
