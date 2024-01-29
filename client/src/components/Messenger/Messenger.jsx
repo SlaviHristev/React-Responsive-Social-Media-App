@@ -1,5 +1,5 @@
 
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { DarkModeContext } from '../../contexts/DarkModeContext';
 import NavBar from '../Layouts/Main/Navbar/NavBar'
 import styles from './Messenger.module.css'
@@ -15,6 +15,7 @@ export default function Messenger(){
     const { darkMode } = useContext(DarkModeContext);
     const [currentChat,setCurrentChat] = useState(null);
     const [newMessage, setNewMessage] = useState('');
+    const scrollRef = useRef()
 
     const { isLoading, error, data } = useQuery(['conversation'], () =>
     makeRequest.get("/conversations/"+currentUser.id).then((res) =>{
@@ -50,6 +51,10 @@ export default function Messenger(){
         setNewMessage('');
     }
 
+    useEffect(() =>{
+        scrollRef.current?.scrollIntoView({behavior:'smooth'});
+    },[messagesData])
+
     return(
         <>
         <NavBar/>
@@ -79,7 +84,10 @@ export default function Messenger(){
                     ? "Loading..."
                     
                         :messagesData.map(message => (
+                            <div ref={scrollRef} key={message.id}>
+
                             <Message message={message} key={message.id} own={String(message.sender) === String(currentUser.id)}/>
+                            </div>
                             
                         ))}
                       
