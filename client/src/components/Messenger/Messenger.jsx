@@ -9,13 +9,19 @@ import Online from './Online/Online';
 import { AuthContext } from '../../contexts/AuthContext';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { makeRequest } from '../../axios';
+import {io} from 'socket.io-client';
 
 export default function Messenger(){
     const { currentUser } = useContext(AuthContext)
     const { darkMode } = useContext(DarkModeContext);
     const [currentChat,setCurrentChat] = useState(null);
     const [newMessage, setNewMessage] = useState('');
+    const [socket,setSocket] = useState(null);
     const scrollRef = useRef()
+
+    useEffect(()=>{
+        setSocket(io("ws://localhost:8900"))
+    },[]);
 
     const { isLoading, error, data } = useQuery(['conversation'], () =>
     makeRequest.get("/conversations/"+currentUser.id).then((res) =>{
