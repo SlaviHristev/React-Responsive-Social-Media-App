@@ -16,12 +16,30 @@ export default function Messenger(){
     const { darkMode } = useContext(DarkModeContext);
     const [currentChat,setCurrentChat] = useState(null);
     const [newMessage, setNewMessage] = useState('');
-    const [socket,setSocket] = useState(null);
+    const [arrivalMessage, setArrivalMessage] = useState(null);
+    const socket = useRef();
     const scrollRef = useRef()
 
-    useEffect(()=>{
-        setSocket(io("ws://localhost:8900"))
-    },[]);
+    useEffect(() =>{
+        socket.current = io("ws://localhost:8900");
+        socket.current.on("getMessage", data =>{
+            setArrivalMessage({
+                sender:data.senderId,
+                text:data.text,
+                createdAt:Date.now(),
+            })
+        })
+    },[])
+
+    
+
+    useEffect(() =>{
+        socket.current.emit("addUser",currentUser.id);
+        socket.current.on('getUsers', users =>{
+            console.log(users);
+        })
+    },[currentUser])
+    
 
     const { isLoading, error, data } = useQuery(['conversation'], () =>
     makeRequest.get("/conversations/"+currentUser.id).then((res) =>{
@@ -49,6 +67,13 @@ export default function Messenger(){
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
+        const recieverId = currentChat.members.find(member => member !== currentUser.id);
+        socket.current.emit("sendMessage", {
+            senderId: currentUser.id,
+            recieverId,
+            text: newMessage,
+
+        })
         mutation.mutate({
             sender:currentUser.id,
             text: newMessage,
