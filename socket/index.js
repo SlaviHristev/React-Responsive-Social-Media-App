@@ -1,43 +1,65 @@
-const io = require("socket.io")(8900,{
-    cors:{
-        origin:"http://localhost:5173"
-    },
+const io = require("socket.io")(8900, {
+  cors: {
+    origin: "http://localhost:5173",
+  },
 });
 
 let users = [];
 
-const addUser = (userId, socketId) =>{
-    !users.some(user => user.userId === userId) &&
-    users.push({userId,socketId});
-}
 
-const removeUser = (socketId) =>{
-    users.filter((user) => user.socketId !== socketId);
-}
+const addUser = (userId, socketId) => {
+  console.log("Adding user:", userId, socketId);
+  !users.some((user) => String(user.userId) === String(userId)) &&
+    users.push({ userId, socketId });
+};
 
-const getUser = (userId) =>{
-    return users.find(user=> user.userId === userId)
-}
+const removeUser = (socketId) => {
+  users = users.filter((user) => String(user.socketId) !== String(socketId));
+};
+
+const getUser = (userId) => {
+  return users.find((user) => String(user.userId) === String(userId));
+};
 
 io.on("connection", (socket) => {
-    console.log('A user connected');
-    socket.on('addUser', userId=>{
-        addUser(userId,socket.id);
-        io.emit("getUsers", users)
-    });
+  //when ceonnect
+  console.log("a user connected.");
 
-    socket.on("sendMessage", ({senderId,recieverId,text})=>{
-        const user = getUser(recieverId);
-        io.to(user.socketId).emit("getMessage", {
-            senderId,
-            text
-        })
-    })
+  //take userId and socketId from user
+  socket.on("addUser", (userId) => {
+    console.log("User connected:", userId);
+    addUser(userId, socket.id);
+    io.emit("getUsers", users);
+  });
 
+  //send and get message
+  socket.on("sendMessage", ({ senderId, recieverId, text }) => {
+    const user = getUser(recieverId);
+    console.log(user);
+    if (user) {
+      const { socketId } = user;
+      if (socketId) {
+        io.to(socketId).emit("getMessage", {
+          senderId,
+          text,
+        });
+        io.emit("newMessage", {
+          senderId,
+          recieverId,
+          text,
+        });
+      } else {
+        console.error(`Socket ID not found for user: ${recieverId}`);
+      }
+    } else {
+      console.error(`User not found: ${recieverId}`);
+    }
+  });
 
-    socket.on("disconnect", () =>{
-        console.log('an user has disconnected');
-        removeUser(socket.id)
-        io.emit("getUsers", users)
-    })
-})
+  //when disconnect
+  socket.on("disconnect", () => {
+    console.log("a user disconnected!");
+    removeUser(socket.id);
+    io.emit("getUsers", users);
+  });
+});

@@ -22,13 +22,14 @@ export const getConversation = (req,res)=>{
      const q = `SELECT id,members,created_at,updated_at FROM conversation WHERE JSON_CONTAINS(members,JSON_ARRAY(?), '$') > 0`;
      
      const userId = req.params.userId;
-
+     
+     console.log(userId);
      db.query(q, [userId], (err,data) =>{
-        if(err){
-            console.error('Error fetching user conversations',err);
-            return res.status(500).json('Internal server error!')
-        }
-
+         if(err){
+             console.error('Error fetching user conversations',err);
+             return res.status(500).json('Internal server error!')
+            }
+            
         return res.status(200).json(data);
      })
 }
