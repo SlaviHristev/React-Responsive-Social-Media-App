@@ -30,12 +30,21 @@ export default function Online({onlineUsers, currentUserId, setCurrentChat}){
         filterOnlineFriends();
     }, [friends, onlineUsers]);
 
+
+    const handleClick = async (user) =>{
+        try {
+            const res = await makeRequest(`/conversations/find/${currentUserId}/${user.id}`);
+            setCurrentChat(res.data)
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return(
         <div className={styles.online}>
             {onlineFriends.map(friend =>(
 
-                <div className={styles.onlineFriend} key={friend.id}>
-                <div className={styles.onlineFriendImgContainer}>
+                <div className={styles.onlineFriend} key={friend.id} onClick={() => handleClick(friend)}>
+                <div className={styles.onlineFriendImgContainer}> 
                     <img src={'/upload/' + friend.profilePic} alt="" />
                     <div className={styles.onlineBadge}>
 
