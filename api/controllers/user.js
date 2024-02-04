@@ -74,3 +74,22 @@ db.query(q,[userId], (err,data) =>{
     return res.status(200).json(data);
 })
 }
+
+export const getFollowedUsers = (req, res) => {
+    const userId = req.params.userId;
+  
+    const q = `
+    SELECT users.id, users.username, users.profilePic
+    FROM users
+    JOIN relationships ON users.id = relationships.followedUserId
+    WHERE relationships.followerUserId = ?`;
+  
+    db.query(q, [userId], (err, data) => {
+      if (err) {
+        console.log('Error fetching followed users:', err);
+        return res.status(500).json({ error: 'Internal Server Error' });
+      }
+  
+      return res.status(200).json(data);
+    });
+  };
