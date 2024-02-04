@@ -3,26 +3,21 @@ import { makeRequest } from "../../../../../axios.js";
 import styles from './OnlineFollowedUsers.module.css';
 import { Link } from "react-router-dom";
 
-export default function OnlineFollowedUsers({darkMode, currentUser}) {
-    const { isLoading, error, data } = useQuery(['users'], () => {     
-        return makeRequest.get(`/users/onlineFollowed/`+ currentUser.id).then((res) => {
-          return res.data;
-        });
-      });
-      if (isLoading) {
-        return <div>Loading...</div>;
-      }
-    
-      if (error) {
-        return <div>Error loading data: {error.message}</div>;
-      }
+export default function OnlineFollowedUsers({darkMode, currentUser , onlineUsers}) {
+  const fetchFriends = async (currentUserId) => {
+    const res = await makeRequest.get('/users/friends/' + currentUser.id);
+    return res.data;
+  };
+  const { data: friends, isError } = useQuery(['friends', currentUser.id], () => fetchFriends(currentUser.id));
+
+  const onlineFriends = friends?.filter(friend => onlineUsers.some(onlineUser => onlineUser.id === friend.id)) || [];
       
       return (
         <div className={darkMode ? styles.lightMode : styles.darkMode}>
           <div className={styles.item}>
             <span>Online Friends</span>
-            {data && Array.isArray(data) && data.length > 0 ? (
-              data.map((user) => (
+            {onlineFriends && Array.isArray(onlineFriends) && onlineFriends.length > 0 ? (
+              onlineFriends.map((user) => (
                 <div className={styles.user} key={user.id}>
                   <div className={styles.userInfo}>
                     <Link to={`/profile/` + user.id} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '20px' }}>
@@ -34,7 +29,7 @@ export default function OnlineFollowedUsers({darkMode, currentUser}) {
                 </div>
               ))
             ) : (
-              <div>No online users</div>
+              <div>No online friends</div>
             )}
           </div>
         </div>
