@@ -42,12 +42,19 @@ export default function Messenger() {
       currentChat?.members.includes(arrivalMessage.sender) &&
       setMessages((prev) => [...prev, arrivalMessage]);
   }, [arrivalMessage, currentChat]);
+  
 
   useEffect(() => {
     socket.current.emit("addUser", currentUser.id);
+    const fetchFollowedFriends = async () => {
+    const res = await makeRequest.get('/users/friends/'+currentUser.id);
+    const followedFriends = res.data
     socket.current.on('getUsers', users => {
-      setOnlineUsers(users)
+      setOnlineUsers(followedFriends.filter((f) => users.some(u=>u.userId === f.id)))
+      
     })
+    }
+    fetchFollowedFriends()
   }, [currentUser])
 
 

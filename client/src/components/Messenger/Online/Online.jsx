@@ -7,27 +7,45 @@ export default function Online({onlineUsers, currentUserId, setCurrentChat}){
     const [friends,setFriends] = useState([]);
     const [onlineFriends,setOnlineFriends] = useState([]);
 
-    useEffect(() =>{
-        const getFriends = async () =>{
-            const res = await makeRequest.get('/users/friends/' + currentUserId)
-            setFriends(res.data);
-        }
-        getFriends()
-    },[currentUserId]);
-    console.log(friends);
+    useEffect(() => {
+        const getFriends = async () => {
+            try {
+                const res = await makeRequest.get('/users/friends/' + currentUserId);
+                setFriends(res.data);
+            } catch (error) {
+                console.error('Error fetching friends:', error);
+            }
+        };
+    
+        getFriends();
+    }, [currentUserId]);
+    
+    useEffect(() => {
+
+        const filterOnlineFriends = () => {
+            setOnlineFriends(friends.filter(friend => onlineUsers.some(onlineUser => onlineUser.id === friend.id)));
+        };
+    
+
+        filterOnlineFriends();
+    }, [friends, onlineUsers]);
+
     return(
         <div className={styles.online}>
-            <div className={styles.onlineFriend}>
+            {onlineFriends.map(friend =>(
+
+                <div className={styles.onlineFriend} key={friend.id}>
                 <div className={styles.onlineFriendImgContainer}>
-                    <img src="" alt="" />
+                    <img src={'/upload/' + friend.profilePic} alt="" />
                     <div className={styles.onlineBadge}>
 
                     </div>
                 </div>
                 <span className={styles.onlineUsername}>
-                    Test
+                    {friend.username}
                 </span>
             </div>
+                ))}
         </div>
     )
 }

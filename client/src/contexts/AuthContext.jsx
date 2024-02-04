@@ -13,7 +13,6 @@ export const AuthContextProvider = ({ children }) => {
       const response = await axios.post("http://localhost:5000/api/auth/login", inputs,{
         withCredentials:true
       });
-
       setCurrentUser(response.data)
     };
 
