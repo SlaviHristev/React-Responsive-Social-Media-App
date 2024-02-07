@@ -1,11 +1,30 @@
+/* :root {
+    --text-color-light: #000;
+    --bg-color-light: white;
+    --logo-color-light: darkblue;
+    --bg-soft-color-light: #f6f3f3;
+    --text-color-soft-light: #555;
+    --border-color-light: lightgray;
+
+    --text-color-dark: whitesmoke;
+    --bg-color-dark: #222;
+    --logo-color-dark: white;
+    --bg-soft-color-dark: #333;
+    --text-color-soft-dark: lightgray;
+    --border-color-dark: #444;
+} */
+
+
 .lightMode {
     .messenger {
         padding-top: 70px;
         min-height: 100vh;
         display: flex;
+        
 
         .chatMenu {
             flex: 3.5;
+            
 
             .chatMenuWrapper {
                 padding: 10px;
@@ -22,7 +41,7 @@
 
         .chatBox {
             flex: 5.5;
-            
+
 
             .chatBoxWrapper {
                 padding: 10px;
@@ -30,7 +49,7 @@
                 display: flex;
                 flex-direction: column;
                 position: relative;
-                
+
 
 
                 .chatBoxTop {
@@ -68,15 +87,16 @@
                         background-color: teal;
                         color: white;
                     }
-                   
+
                 }
-                
+
             }
-            .noConversation{
+
+            .noConversation {
                 position: absolute;
                 top: 20%;
                 font-size: 50px;
-                color:rgb(209, 204, 204);
+                color: rgb(209, 204, 204);
                 cursor: default;
             }
         }
@@ -95,32 +115,101 @@
 
 .darkMode {
     .messenger {
-        height: calc(100vh -70px);
+        padding-top: 70px;
+        min-height: 100vh;
         display: flex;
-    }
+        
+        background-color:  #222;
+        
+        
 
-    .chatMenu {
-        flex: 3.5;
+        .chatMenu {
+            flex: 3.5;
+            .chatMenuWrapper {
+                padding: 10px;
+                height: 100%;
 
-        .chatMenuWrapper {
-            padding: 10px
+                .chatMenuInput {
+                    width: 90%;
+                    padding: 10px 0;
+                    border: none;
+                    border-bottom: 1px solid gray;
+                    background: #333;
+                }
+            }
         }
-    }
 
-    .chatBox {
-        flex: 5.5;
+        .chatBox {
+            flex: 5.5;
+            background-color:  #333;
+            .chatBoxWrapper {
+                padding: 10px;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                position: relative;
 
-        .chatBoxWrapper {
-            padding: 10px
+
+
+                .chatBoxTop {
+                    position: sticky;
+                    height: calc(100vh - 70px);
+                    overflow: scroll;
+
+                    padding-right: 10px;
+
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
+
+                }
+
+                .chatBoxBottom {
+                    margin-top: 5px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    
+
+                    .chatMessage {
+                        width: 80%;
+                        height: 90px;
+                        padding: 10px;
+                        color: white;
+                        background-color:  #494949;
+
+                    }
+
+                    .chatSubmitButton {
+                        width: 70px;
+                        height: 40px;
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        background-color: teal;
+                        color: white;
+                    }
+
+                }
+
+            }
+
+            .noConversation {
+                position: absolute;
+                top: 20%;
+                font-size: 50px;
+                color: lightgray;
+                cursor: default;
+            }
         }
-    }
 
-    .chatOnline {
-        flex: 3;
+        .chatOnline {
+            flex: 3;
 
-        .chatOnlineWrapper {
-            padding: 10px
+            .chatOnlineWrapper {
+                padding: 10px;
+                height: 100%;
+            }
         }
     }
 }
-

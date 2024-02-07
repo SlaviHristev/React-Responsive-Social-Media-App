@@ -25,8 +25,8 @@ export default function Conversations({conversation, currentUser}){
     return(
         <div className={styles.conversation}>
             <>
-            <img className={styles.conversationImg} src={`/upload/${user.profilePic}`} alt=''/>
-            <span className={styles.conversationName}>{user.username}</span>
+            <img className={styles.conversationImg} src={`/upload/${user?.profilePic}`} alt=''/>
+            <span className={styles.conversationName}>{user?.username}</span>
             </>
 
         </div>
