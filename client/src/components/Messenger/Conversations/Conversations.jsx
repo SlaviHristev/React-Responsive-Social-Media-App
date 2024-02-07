@@ -8,6 +8,7 @@ export default function Conversations({conversation, currentUser}){
     const friendId = conversation.members.find((member) => String(member) !== String(currentUser.id));
     const { isLoading, error, data } = useQuery(['users'], () =>
     makeRequest.get("/users/find/"+ friendId).then((res) =>{
+         console.log('User Data:', res.data);
         return res.data
     })
     )
