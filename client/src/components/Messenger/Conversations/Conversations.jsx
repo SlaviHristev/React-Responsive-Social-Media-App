@@ -1,29 +1,33 @@
 import { useQuery } from 'react-query';
 import styles from './Conversations.module.css';
 import { makeRequest } from '../../../axios';
+import { useEffect, useState } from 'react';
 
 
 export default function Conversations({conversation, currentUser}){
-
-    const friendId = conversation.members.find((member) => String(member) !== String(currentUser.id));
-    const { isLoading, error, data } = useQuery(['users'], () =>
-    makeRequest.get("/users/find/"+ friendId).then((res) =>{
-         console.log('User Data:', res.data);
-        return res.data
-    })
-    )
+    const [user, setUser] = useState(null);
+    useEffect(() => {
+        const friendId = conversation.members.find((member) => String(member) !== String(currentUser.id));
     
+        const getUser = async () => {
+          try {
+            const res = await makeRequest("/users/find/" + friendId);
+            setUser(res.data);
+            console.log(res.data);
+          } catch (err) {
+            console.log(err);
+          }
+        };
+        getUser();
+      }, [currentUser, conversation]);
+
 
     return(
         <div className={styles.conversation}>
-            {error ? "Something went wrong!" : 
-            isLoading
-            ? "Loading"
-            :
-            (<>
-            <img className={styles.conversationImg} src={`/upload/`+data.profilePic} alt=''/>
-            <span className={styles.conversationName}>{data.username}</span>
-            </>)}
+            <>
+            <img className={styles.conversationImg} src={`/upload/${user.profilePic}`} alt=''/>
+            <span className={styles.conversationName}>{user.username}</span>
+            </>
 
         </div>
     )
