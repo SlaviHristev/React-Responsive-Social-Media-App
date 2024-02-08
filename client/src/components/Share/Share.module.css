@@ -220,3 +220,22 @@
         }
     }
 }
+
+@media screen and (max-width: 480px) {
+    .lightMode{
+        .share{
+            .container{
+                .top{
+                    .left{
+                        input{
+                            display: flex;
+                            margin: 20px;
+                            height: 10px;
+                            
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
