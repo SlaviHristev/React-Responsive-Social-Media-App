@@ -32,7 +32,7 @@ export default function NavBar() {
                 <div className={styles.navbar}>
                     <div className={styles.left}>
                         <Link to={'/'} style={{ textDecoration: 'none' }} >
-                            <span>Socical Media App</span>
+                            <span>Social Media App</span>
                         </Link>
                         <Link to={'/'} style={{textDecoration:'none', color:'none', fill:'none'}}><HomeIcon style={{height:'50px', paddingTop:'5px'}}  /></Link>
                         {darkMode ? <DarkModeIcon onClick={toggle} />
