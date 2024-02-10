@@ -122,7 +122,6 @@ export default function Messenger() {
         const res = await makeRequest.post("/messages", message);
         setMessages([...messages, res.data]);
         setNewMessage("");
-        console.log(messages);
       } catch (err) {
         console.log(err);
       }

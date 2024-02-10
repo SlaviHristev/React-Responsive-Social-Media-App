@@ -9,12 +9,26 @@ export default function Message({ message, own }) {
     const [userInfo,setUserInfo] = useState([]);
 
     useEffect(() =>{
-        const getInfo =async() =>{
-            const res = await makeRequest.get('/users/find/' +Number(message.sender));
-            setUserInfo(res.data);
-        }
-        getInfo()
-    }, [])
+        const getInfo = async () => {
+            try {
+                let senderId;
+                if (message.senderId !== undefined) {
+                    senderId = message.senderId;
+                } else if (message.sender !== undefined) {
+                    senderId = parseInt(message.sender);
+                }
+                if (!isNaN(senderId)) {
+                    const res = await makeRequest.get('/users/find/' + senderId);
+                    setUserInfo(res.data);
+                } else {
+                    console.error('Invalid sender ID:', message.senderId || message.sender);
+                }
+            } catch (error) {
+                console.error('Error fetching user information:', error);
+            }
+        };
+        getInfo();
+    }, [message.sender, message.senderId]);
 
     return (
         <div className={own ? styles.own : styles.message}>

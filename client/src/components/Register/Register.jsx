@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import styles from './Register.module.css'
 import { useState } from 'react';
 import axios from "axios";
 
 export default function Register(){
+    const navigate = useNavigate();
     const [inputs, setInputs] = useState({
         username:"",
         email:"",
@@ -23,6 +24,7 @@ export default function Register(){
 
         try {
           await axios.post("http://localhost:5000/api/auth/register", inputs);
+            navigate('/login')
         } catch (err) {
             setErr(err.response.data)
         }
